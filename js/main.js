@@ -19,17 +19,17 @@ const I={
 };
 /* ---- DATA (sesuai PDF) ---- */
 const acara=[
- {d:"Juni – Juli 2026",t:"Lomba Hias Altar",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"decor",k:"peach"},
+ {d:"Juni – Juli 2026",t:"Lomba Hias Altar",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"decor",k:"peach",pi:0},
  {d:"Juni 2026",t:"Social Project",l:"Pulau Seribu",c:"sosial",ic:"hands",k:"mint"},
  {d:"28 Juni 2026",t:"Baksos Sirkumsisi / Sunatan Massal",l:"GKP Lantai 1",c:"sosial",ic:"cross",k:"blue"},
- {d:"30 Juni 2026",t:"Lomba Short Movie Remaja",l:"Last Submission",c:"lomba",ic:"film",k:"lemon"},
- {d:"5 Juli 2026",t:"Lomba Mewarnai Anak",l:"Kelas Tarakanita",c:"lomba",ic:"brush",k:"lilac"},
- {d:"11 Juli 2026",t:"Lomba Paduan Suara",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"music",k:"rose"},
- {d:"12 Juli 2026",t:"Lomba Story Telling Anak",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"book",k:"peach"},
- {d:"12 Juli 2026",t:"Lomba Narasi Kitab Suci",l:"GKP Lantai 1",c:"lomba",ic:"bible",k:"mint"},
+ {d:"30 Juni 2026",t:"Lomba Short Movie Remaja",l:"Last Submission",c:"lomba",ic:"film",k:"lemon",pi:2},
+ {d:"5 Juli 2026",t:"Lomba Mewarnai Anak",l:"Kelas Tarakanita",c:"lomba",ic:"brush",k:"lilac",pi:4},
+ {d:"11 Juli 2026",t:"Lomba Paduan Suara",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"music",k:"rose",pi:5},
+ {d:"12 Juli 2026",t:"Lomba Story Telling Anak",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"book",k:"peach",pi:6},
+ {d:"12 Juli 2026",t:"Lomba Narasi Kitab Suci",l:"GKP Lantai 1",c:"lomba",ic:"bible",k:"mint",pi:7},
  {d:"12 Juli 2026",t:"Lomba Got Talent",l:"GKP Lantai 3",c:"lomba",ic:"star",k:"blue"},
  {d:"4 & 18 Juli 2026",t:"Fun Sport — Voli & Mini Soccer",l:"GKP Lantai 1",c:"olahraga",ic:"ball",k:"lemon"},
- {d:"4 Juli 2026",t:"Demo & Lomba Masak",l:"GKP Lantai 1",c:"lomba",ic:"chef",k:"lilac"},
+ {d:"4 Juli 2026",t:"Demo & Lomba Masak",l:"GKP Lantai 1",c:"lomba",ic:"chef",k:"lilac",pi:3},
  {d:"18 Juli 2026",t:"Seminar Sarasehan Keluarga",l:"GKP Lantai 3",c:"rohani",ic:"people",k:"rose"},
  {d:"19 Juli 2026",t:"Lomba Bible Talent Show",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"bible",k:"peach"},
  {d:"19 Juli 2026",t:"Lomba Family Bible",l:"Pulau Seribu",c:"lomba",ic:"book",k:"mint"},
@@ -44,14 +44,22 @@ acara.forEach((a,i)=>{
  const side=i%2===0?"left":"right";
  const el=document.createElement("div");
  el.className=`tl-item ${side}`;el.dataset.cat=a.c;
+ const posterBtn=a.pi!=null?`<button class="tl-cta" data-pi="${a.pi}">Lihat Poster &rarr;</button>`:"";
  el.innerHTML=`
    <div class="tl-node n-${a.k}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[a.ic]}</svg></div>
    <div class="tl-card">
      <span class="tl-pill p-${a.k}">${a.d}</span>
      <h3>${a.t}</h3>
      <div class="tl-loc">${pin}<span>${a.l}</span></div>
+     ${posterBtn}
    </div>`;
  tl.appendChild(el);
+});
+tl.addEventListener("click",e=>{
+ const b=e.target.closest(".tl-cta");if(!b)return;
+ const pi=+b.dataset.pi;
+ document.getElementById("lomba").scrollIntoView({behavior:"smooth"});
+ go(pi);
 });
 document.getElementById("filters").addEventListener("click",e=>{
  const b=e.target.closest(".chip");if(!b)return;
@@ -62,13 +70,13 @@ document.getElementById("filters").addEventListener("click",e=>{
 
 /* ---- DETAIL LOMBA carousel (poster asli) ---- */
 const posters=[
- {img:"images/poster1-hias-altar.jpg",t:"Lomba Hias Altar",s:"Antar Wilayah"},
+ {img:"images/poster1-hias-altar.jpg",t:"Lomba Hias Altar",s:"Antar Wilayah",form:"https://docs.google.com/forms/d/e/1FAIpQLScSJbNfHRfWNmokiGL1nm64IhLXPp8uL-1SYqZAlS3xTPCuMw/viewform"},
  {img:"images/poster2-jadwal-hias-altar.jpg",t:"Jadwal Hias Altar",s:"Antar Wilayah"},
- {img:"images/poster3-short-movie.jpg",t:"Lomba Short Movie",s:"Remaja SMP – SMA"},
+ {img:"images/poster3-short-movie.jpg",t:"Lomba Short Movie",s:"Remaja SMP – SMA",form:"https://forms.gle/16EYc58SyrCpTzBa7"},
  {img:"images/poster4-demo-masak.jpg",t:"Demo Masak",s:"HUT Paroki"},
- {img:"images/poster5-mewarnai.jpg",t:"Lomba Mewarnai",s:"TK"},
- {img:"images/poster6-paduan-suara.jpg",t:"Lomba Paduan Suara",s:"Antar Wilayah"},
- {img:"images/poster7-storytelling.jpg",t:"Lomba Storytelling",s:"SD Kelas 1 – 3"},
+ {img:"images/poster5-mewarnai.jpg",t:"Lomba Mewarnai",s:"TK",form:"https://forms.gle/9g4jB4DHPbfeXEsB7"},
+ {img:"images/poster6-paduan-suara.jpg",t:"Lomba Paduan Suara",s:"Antar Wilayah",form:"https://daftarlombapaduansuarahutgkkr56.my.canva.site/"},
+ {img:"images/poster7-storytelling.jpg",t:"Lomba Storytelling",s:"SD Kelas 1 – 3",form:"https://forms.gle/u6n2EQCAPU8amGnH6"},
  {img:"images/poster8-narasi-kitab-suci.jpg",t:"Lomba Narasi Kitab Suci",s:"OMK & Dewasa 17 – 60"},
 ];
 const lb=document.getElementById("lb"),lbimg=document.getElementById("lbimg");
@@ -80,7 +88,8 @@ const track=document.getElementById("ctrack"),dotsEl=document.getElementById("cd
 let idx=0;
 posters.forEach((p,i)=>{
  const s=document.createElement("div");s.className="c-slide";
- s.innerHTML=`<img src="${p.img}" alt="Poster ${p.t}" loading="lazy"/><div class="cap"><b>${p.t}</b><small>${p.s}</small></div>`;
+ const cta=p.form?`<a class="c-cta" href="${p.form}" target="_blank" rel="noopener">Daftar Sekarang &rarr;</a>`:"";
+ s.innerHTML=`<img src="${p.img}" alt="Poster ${p.t}" loading="lazy"/><div class="cap"><b>${p.t}</b><small>${p.s}</small>${cta}</div>`;
  s.querySelector("img").addEventListener("click",()=>openLB(p.img,p.t));
  track.appendChild(s);
  const d=document.createElement("button");d.className="c-dot"+(i===0?" active":"");d.setAttribute("aria-label","Poster "+(i+1));

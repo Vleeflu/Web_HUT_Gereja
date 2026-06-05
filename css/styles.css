@@ -98,6 +98,9 @@
   .tl-card h3{font-size:1.16rem;color:var(--teal);margin-bottom:6px;line-height:1.2}
   .tl-loc{display:flex;align-items:center;gap:6px;font-size:13px;color:#5a6b61;font-weight:600}
   .tl-loc svg{flex-shrink:0}
+  .tl-cta{margin-top:12px;display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:12.5px;font-weight:700;
+          color:var(--green-deep);background:#eaf3e0;border:1px solid #d4e6c2;border-radius:30px;padding:7px 14px;cursor:pointer;transition:.2s}
+  .tl-cta:hover{background:var(--green);color:#fff;border-color:var(--green)}
   /* node icon */
   .tl-node{position:absolute;top:24px;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
            border:4px solid var(--paper);box-shadow:0 4px 14px var(--shadow);z-index:2}
@@ -119,9 +122,13 @@
   .c-track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1)}
   .c-slide{min-width:100%;display:flex;flex-direction:column;align-items:center;padding:26px 26px 14px}
   .c-slide img{max-height:70vh;width:auto;max-width:100%;border-radius:12px;box-shadow:0 8px 24px var(--shadow);cursor:zoom-in}
-  .c-slide .cap{margin-top:15px;text-align:center}
+  .c-slide .cap{margin-top:15px;text-align:center;display:flex;flex-direction:column;align-items:center}
   .c-slide .cap b{font-family:"Fraunces",serif;font-weight:600;color:var(--teal);font-size:1.3rem;display:block;line-height:1.15}
   .c-slide .cap small{display:inline-block;margin-top:5px;font-size:11.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--pin)}
+  .c-cta{display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-weight:700;font-size:14px;text-decoration:none;
+         color:#fff;background:linear-gradient(135deg,var(--green-deep),var(--green));padding:11px 22px;border-radius:30px;
+         box-shadow:0 8px 20px rgba(31,91,58,.28);transition:transform .2s,box-shadow .2s}
+  .c-cta:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(31,91,58,.36)}
   .c-arrow{position:absolute;top:42%;transform:translateY(-50%);z-index:3;width:46px;height:46px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--teal);font-size:26px;line-height:1;cursor:pointer;box-shadow:0 6px 18px var(--shadow);transition:.2s;display:grid;place-items:center}
   .c-arrow:hover{background:var(--green);color:#fff}
   .c-arrow.prev{left:14px}.c-arrow.next{right:14px}
