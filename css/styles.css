@@ -89,6 +89,28 @@
   .chip:hover{border-color:var(--green)}
   .chip.active{background:var(--green);color:#fff;border-color:var(--green)}
 
+  .cta-band{position:relative;overflow:hidden;display:flex;gap:24px;align-items:center;max-width:900px;margin:0 auto 46px;
+    background:linear-gradient(135deg,#1f5b3a 0%,#2f7a48 55%,#3a8a4f 100%);border-radius:24px;padding:30px 34px;
+    color:var(--cream);box-shadow:0 22px 52px rgba(22,60,58,.30)}
+  .cta-band::after{content:"";position:absolute;right:-46px;top:-46px;width:210px;height:210px;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,162,59,.40),transparent 70%);pointer-events:none}
+  .cta-band::before{content:"";position:absolute;left:-34px;bottom:-56px;width:190px;height:190px;border-radius:50%;
+    background:radial-gradient(circle,rgba(156,194,106,.25),transparent 70%);pointer-events:none}
+  .cta-ico{position:relative;z-index:1;flex-shrink:0;width:76px;height:76px;border-radius:20px;display:grid;place-items:center;
+    background:linear-gradient(160deg,#f6da82,#c9a23b);color:#473208;box-shadow:0 12px 26px rgba(0,0,0,.24)}
+  .cta-ico svg{width:40px;height:40px}
+  .cta-body{position:relative;z-index:1}
+  .cta-body h3{font-family:"Fraunces",serif;color:#fff;font-size:clamp(1.18rem,2.4vw,1.6rem);line-height:1.16;margin-bottom:7px}
+  .cta-body p{color:#e8f3dd;font-size:.97rem;line-height:1.6}
+  .cta-body strong{color:#fff;font-weight:700}
+  .cta-tags{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 11px}
+  .cta-tag{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:800;letter-spacing:.01em;padding:7px 15px;border-radius:30px}
+  .cta-tag.plus{background:#cdeeb0;color:#1c6a2c;box-shadow:0 5px 14px rgba(0,0,0,.14)}
+  .cta-tag.minus{background:#f9ccc4;color:#b53220;box-shadow:0 5px 14px rgba(0,0,0,.14)}
+  .cta-kick{color:#fff;font-weight:700}
+  @media(max-width:600px){.cta-band{flex-direction:column;text-align:center;gap:15px;padding:26px 20px}
+    .cta-tags{justify-content:center}}
+
   .tl{position:relative;max-width:920px;margin:0 auto}
   .tl::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;transform:translateX(-50%);
               background:linear-gradient(var(--green),#9cc26a,var(--gold));border-radius:3px}
