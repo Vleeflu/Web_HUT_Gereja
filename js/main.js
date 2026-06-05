@@ -33,7 +33,7 @@ const acara=[
  {d:"18 Juli 2026",t:"Seminar Sarasehan Keluarga",l:"GKP Lantai 3",c:"rohani",ic:"people",k:"rose",pk:"seminar"},
  {d:"18 Juli 2026 · Pengumpulan",t:'Lomba Video "Bible in Daily Life"',l:"Pengumpulan Karya",c:"lomba",ic:"film",k:"peach",pk:"video-bible"},
  {d:"19 Juli 2026",t:"Lomba Bible Talent Show",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"bible",k:"mint",pk:"bible-talent"},
- {d:"19 Juli 2026",t:"Lomba Family Bible",l:"Pulau Seribu",c:"lomba",ic:"book",k:"blue",pk:"family-bible"},
+ {d:"19 Juli 2026",t:"Lomba Family Bible",l:"GKP",c:"lomba",ic:"book",k:"blue",pk:"family-bible"},
  {d:"19 Juli 2026",t:"Bazar UMKM",l:"Area Gereja",c:"sosial",ic:"shop",k:"lemon",pk:"bazar"},
  {d:"25 Juli 2026",t:"Lomba Jalan Sehat, Senam Pagi & Line Dance",l:"Parkiran GKP",c:"olahraga",ic:"walk",k:"lilac",pk:"jalan-sehat"},
  {d:"25 Juli 2026",t:"Malam Puncak",l:"Parkiran GKP",c:"puncak",ic:"peak",k:"rose",pk:"malam-puncak"},
