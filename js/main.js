@@ -45,7 +45,7 @@ const posters=[
  {key:"hias-altar-jadwal",img:"images/content/[Liturgi] Jadwal Hias Altar.png",t:"Urutan Lomba Hias Altar",s:"Jadwal & Ketentuan"},
  {key:"short-movie",img:"images/content/[BIA BIR] short movie.jpeg",t:"Lomba Short Movie",s:"Wilayah — Remaja",form:"https://forms.gle/16EYc58SyrCpTzBa7"},
  {key:"social-project",img:"images/content/[LH] Social Project.jpg",t:"Social Project — Menanam Mangrove",s:"Umum · Pulau Tidung"},
- {key:"fun-sport",img:"images/content/[omk] fun sport (belum fixed karena lokasi blm disetujui}.jpeg",t:"Fun Sport — Volley & Soccer",s:"Antar Wilayah",form:"https://forms.gle/rs6ccq2cc2NHXKDA8"},
+ {key:"fun-sport",img:"images/content/[OMK] Fun Volly & minisoccer pot.jpg",t:"Fun Sport — Volley & Soccer",s:"Antar Wilayah",form:"https://forms.gle/rs6ccq2cc2NHXKDA8"},
  {key:"demo-masak",img:"images/content/[pse] demo masak.jpeg",t:"Demo & Lomba Masak",s:"HUT Paroki"},
  {key:"mewarnai",img:"images/content/[BIA BIR] lomba mewarnai.jpeg",t:"Lomba Mewarnai Anak",s:"TK",form:"https://forms.gle/9g4jB4DHPbfeXEsB7"},
  {key:"padus",img:"images/content/[liturgi] LOMBA PADUS.png",t:"Lomba Paduan Suara",s:"Antar Wilayah",form:"https://daftarlombapaduansuarahutgkkr56.my.canva.site/"},
