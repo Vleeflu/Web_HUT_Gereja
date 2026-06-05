@@ -117,22 +117,33 @@ posters.forEach((p,i)=>{
  s.querySelector("img").addEventListener("click",()=>openLB(src,p.t));
  track.appendChild(s);
  const d=document.createElement("button");d.className="c-dot"+(i===0?" active":"");d.setAttribute("aria-label","Poster "+(i+1));
- d.addEventListener("click",()=>go(i));dotsEl.appendChild(d);
+ d.addEventListener("click",()=>{go(i);resetAuto();});dotsEl.appendChild(d);
 });
 document.getElementById("ctot").textContent=posters.length;
 function go(n){idx=(n+posters.length)%posters.length;
  track.style.transform=`translateX(${-idx*100}%)`;
  document.querySelectorAll(".c-dot").forEach((d,i)=>d.classList.toggle("active",i===idx));
  document.getElementById("ccur").textContent=idx+1;}
-document.getElementById("cprev").addEventListener("click",()=>go(idx-1));
-document.getElementById("cnext").addEventListener("click",()=>go(idx+1));
+document.getElementById("cprev").addEventListener("click",()=>{go(idx-1);resetAuto();});
+document.getElementById("cnext").addEventListener("click",()=>{go(idx+1);resetAuto();});
 let sx=null;const vp=document.querySelector(".c-viewport");
 vp.addEventListener("touchstart",e=>sx=e.touches[0].clientX,{passive:true});
-vp.addEventListener("touchend",e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40)go(idx+(dx<0?1:-1));sx=null;});
+vp.addEventListener("touchend",e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){go(idx+(dx<0?1:-1));resetAuto();}sx=null;});
 addEventListener("keydown",e=>{
  if(lb.classList.contains("open")){if(e.key==="Escape")lb.classList.remove("open");return;}
- if(e.key==="ArrowLeft")go(idx-1);if(e.key==="ArrowRight")go(idx+1);
+ if(e.key==="ArrowLeft"){go(idx-1);resetAuto();}if(e.key==="ArrowRight"){go(idx+1);resetAuto();}
 });
+
+/* ---- auto-slide carousel (ganti tiap 5 detik) ---- */
+const AUTO_MS=5000;
+let auto;
+function startAuto(){auto=setInterval(()=>{if(!lb.classList.contains("open"))go(idx+1)},AUTO_MS);}
+function resetAuto(){clearInterval(auto);startAuto();}
+startAuto();
+const carousel=document.getElementById("carousel");
+carousel.addEventListener("mouseenter",()=>clearInterval(auto));
+carousel.addEventListener("mouseleave",resetAuto);
+document.addEventListener("visibilitychange",()=>document.hidden?clearInterval(auto):resetAuto());
 
 /* ---- countdown ---- */
 const target=new Date("2026-07-25T18:00:00+07:00").getTime();
