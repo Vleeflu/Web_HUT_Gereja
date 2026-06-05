@@ -93,7 +93,12 @@ document.getElementById("filters").addEventListener("click",e=>{
  const b=e.target.closest(".chip");if(!b)return;
  document.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));
  b.classList.add("active");const f=b.dataset.f;
- document.querySelectorAll(".tl-item").forEach(it=>it.classList.toggle("hide",f!=="all"&&it.dataset.cat!==f));
+ let v=0;
+ document.querySelectorAll(".tl-item").forEach(it=>{
+   const show=f==="all"||it.dataset.cat===f;
+   it.classList.toggle("hide",!show);
+   if(show){it.classList.toggle("left",v%2===0);it.classList.toggle("right",v%2===1);v++;}
+ });
 });
 
 const lb=document.getElementById("lb"),lbimg=document.getElementById("lbimg");
