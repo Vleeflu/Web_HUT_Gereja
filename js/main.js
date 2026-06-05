@@ -19,24 +19,46 @@ const I={
 };
 /* ---- DATA (sesuai PDF) ---- */
 const acara=[
- {d:"Juni – Juli 2026",t:"Lomba Hias Altar",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"decor",k:"peach",pi:0},
- {d:"Juni 2026",t:"Social Project",l:"Pulau Seribu",c:"sosial",ic:"hands",k:"mint"},
- {d:"28 Juni 2026",t:"Baksos Sirkumsisi / Sunatan Massal",l:"GKP Lantai 1",c:"sosial",ic:"cross",k:"blue"},
- {d:"30 Juni 2026",t:"Lomba Short Movie Remaja",l:"Last Submission",c:"lomba",ic:"film",k:"lemon",pi:2},
- {d:"5 Juli 2026",t:"Lomba Mewarnai Anak",l:"Kelas Tarakanita",c:"lomba",ic:"brush",k:"lilac",pi:4},
- {d:"11 Juli 2026",t:"Lomba Paduan Suara",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"music",k:"rose",pi:5},
- {d:"12 Juli 2026",t:"Lomba Story Telling Anak",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"book",k:"peach",pi:6},
- {d:"12 Juli 2026",t:"Lomba Narasi Kitab Suci",l:"GKP Lantai 1",c:"lomba",ic:"bible",k:"mint",pi:7},
- {d:"12 Juli 2026",t:"Lomba Got Talent",l:"GKP Lantai 3",c:"lomba",ic:"star",k:"blue"},
- {d:"4 & 18 Juli 2026",t:"Fun Sport — Voli & Mini Soccer",l:"GKP Lantai 1",c:"olahraga",ic:"ball",k:"lemon"},
- {d:"4 Juli 2026",t:"Demo & Lomba Masak",l:"GKP Lantai 1",c:"lomba",ic:"chef",k:"lilac",pi:3},
- {d:"18 Juli 2026",t:"Seminar Sarasehan Keluarga",l:"GKP Lantai 3",c:"rohani",ic:"people",k:"rose"},
- {d:"19 Juli 2026",t:"Lomba Bible Talent Show",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"bible",k:"peach"},
- {d:"19 Juli 2026",t:"Lomba Family Bible",l:"Pulau Seribu",c:"lomba",ic:"book",k:"mint"},
- {d:"19 Juli 2026",t:"Bazar UMKM",l:"Area Gereja",c:"sosial",ic:"shop",k:"blue"},
- {d:"25 Juli 2026",t:"Jalan Sehat, Senam Pagi & Line Dance",l:"Parkiran GKP",c:"olahraga",ic:"walk",k:"lemon"},
- {d:"26 Juli 2026",t:"Donor Darah",l:"GKP Lantai 1",c:"sosial",ic:"drop",k:"lilac"},
- {d:"25 Juli 2026",t:"Malam Puncak",l:"Parkiran GKP",c:"puncak",ic:"peak",k:"rose"},
+ {d:"30 Mei – 24 Juli 2026",t:"Lomba Hias Altar",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"decor",k:"peach",pk:"hias-altar"},
+ {d:"27 Juni 2026 · Tentatif",t:"Khitanan Massal",l:"GKP Lantai 1",c:"sosial",ic:"cross",k:"mint"},
+ {d:"30 Juni 2026 · Pengumpulan",t:"Lomba Short Movie Wilayah — Remaja",l:"Pengumpulan Karya",c:"lomba",ic:"film",k:"blue",pk:"short-movie"},
+ {d:"1 – 2 Juli 2026",t:"Social Project — Menanam Mangrove",l:"Pulau Tidung",c:"sosial",ic:"hands",k:"lemon"},
+ {d:"4 & 18 Juli 2026",t:"Fun Sport — Volley & Soccer",l:"GKP Lantai 1",c:"olahraga",ic:"ball",k:"lilac",pk:"fun-sport"},
+ {d:"4 Juli 2026",t:"Demo & Lomba Masak",l:"GKP Lantai 1",c:"lomba",ic:"chef",k:"rose",pk:"demo-masak"},
+ {d:"5 Juli 2026",t:"Lomba Mewarnai Anak",l:"Kelas Tarakanita",c:"lomba",ic:"brush",k:"peach",pk:"mewarnai"},
+ {d:"11 Juli 2026",t:"Lomba Paduan Suara",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"music",k:"mint",pk:"padus"},
+ {d:"12 Juli 2026",t:"Lomba Story Telling Anak",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"book",k:"blue",pk:"storytelling"},
+ {d:"12 Juli 2026",t:"Lomba Narasi Kitab Suci",l:"GKP Lantai 1",c:"lomba",ic:"bible",k:"lemon",pk:"narasi"},
+ {d:"12 Juli 2026",t:"Lomba Got Talent",l:"GKP Lantai 3",c:"lomba",ic:"star",k:"lilac",pk:"got-talent"},
+ {d:"18 Juli 2026",t:"Seminar Sarasehan Keluarga",l:"GKP Lantai 3",c:"rohani",ic:"people",k:"rose",pk:"seminar"},
+ {d:"18 Juli 2026 · Pengumpulan",t:'Lomba Video "Bible in Daily Life"',l:"Pengumpulan Karya",c:"lomba",ic:"film",k:"peach",pk:"video-bible"},
+ {d:"19 Juli 2026",t:"Lomba Bible Talent Show",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"bible",k:"mint",pk:"bible-talent"},
+ {d:"19 Juli 2026",t:"Lomba Family Bible",l:"Pulau Seribu",c:"lomba",ic:"book",k:"blue",pk:"family-bible"},
+ {d:"19 Juli 2026",t:"Bazar UMKM",l:"Area Gereja",c:"sosial",ic:"shop",k:"lemon",pk:"bazar"},
+ {d:"25 Juli 2026",t:"Lomba Jalan Sehat, Senam Pagi & Line Dance",l:"Parkiran GKP",c:"olahraga",ic:"walk",k:"lilac",pk:"jalan-sehat"},
+ {d:"25 Juli 2026",t:"Malam Puncak",l:"Parkiran GKP",c:"puncak",ic:"peak",k:"rose",pk:"malam-puncak"},
+ {d:"26 Juli 2026",t:"Donor Darah",l:"GKP Lantai 1",c:"sosial",ic:"drop",k:"peach",pk:"donor"},
+];
+/* ---- POSTER carousel (file di images/content) ---- */
+const posters=[
+ {key:"hias-altar",img:"images/content/[Liturgi] lomba hias altar.jpg",t:"Lomba Hias Altar",s:"Antar Wilayah",form:"https://docs.google.com/forms/d/e/1FAIpQLScSJbNfHRfWNmokiGL1nm64IhLXPp8uL-1SYqZAlS3xTPCuMw/viewform"},
+ {img:"images/content/[liturgi]urutan lomba hias altar.jpeg",t:"Urutan Lomba Hias Altar",s:"Jadwal & Ketentuan"},
+ {key:"short-movie",img:"images/content/[BIA BIR] short movie.jpeg",t:"Lomba Short Movie",s:"Wilayah — Remaja",form:"https://forms.gle/16EYc58SyrCpTzBa7"},
+ {key:"fun-sport",img:"images/content/[omk] fun sport (belum fixed karena lokasi blm disetujui}.jpeg",t:"Fun Sport — Volley & Soccer",s:"Umum",form:"https://forms.gle/rs6ccq2cc2NHXKDA8"},
+ {key:"demo-masak",img:"images/content/[pse] demo masak.jpeg",t:"Demo & Lomba Masak",s:"HUT Paroki"},
+ {key:"mewarnai",img:"images/content/[BIA BIR] lomba mewarnai.jpeg",t:"Lomba Mewarnai Anak",s:"TK",form:"https://forms.gle/9g4jB4DHPbfeXEsB7"},
+ {key:"padus",img:"images/content/[liturgi] LOMBA PADUS.png",t:"Lomba Paduan Suara",s:"Antar Wilayah",form:"https://daftarlombapaduansuarahutgkkr56.my.canva.site/"},
+ {key:"storytelling",img:"images/content/[BIAR BIR story telling].jpeg",t:"Lomba Story Telling Anak",s:"SD Kelas 1 – 3",form:"https://forms.gle/u6n2EQCAPU8amGnH6"},
+ {key:"narasi",img:"images/content/[kks]lomba narasi kitab suci .jpeg",t:"Lomba Narasi Kitab Suci",s:"OMK & Dewasa 17 – 60"},
+ {key:"got-talent",img:"images/content/[OMK] got talent.jpeg",t:"Lomba Got Talent",s:"OMK",note:"Daftar via Koordinator Wilayah masing-masing"},
+ {key:"seminar",img:"images/content/[SKK] seminar.jpeg",t:"Seminar Sarasehan Keluarga",s:"Keluarga"},
+ {key:"video-bible",img:"images/content/[KKS]lomba video bible in daily life .jpeg",t:'Lomba Video "Bible in Daily Life"',s:"Umum"},
+ {key:"bible-talent",img:"images/content/[KKS]bible talent show.jpeg",t:"Lomba Bible Talent Show",s:"Antar Wilayah"},
+ {key:"family-bible",img:"images/content/[BIA BIR] family bible.jpeg",t:"Lomba Family Bible",s:"Keluarga"},
+ {key:"bazar",img:"images/content/[PSE]bazaar UMKM.jpeg",t:"Bazar UMKM",s:"Umum"},
+ {key:"jalan-sehat",img:"images/content/[HAAK] jalan sehat, senam, line dance.png",t:"Jalan Sehat, Senam Pagi & Line Dance",s:"Umum"},
+ {key:"malam-puncak",img:"images/content/[panitia]malam puncak.jpeg",t:"Malam Puncak",s:"Puncak Perayaan"},
+ {key:"donor",img:"images/content/[PSE] Donor Darah.jpeg",t:"Donor Darah",s:"Umum"},
 ];
 const pin='<svg width="15" height="15" viewBox="0 0 24 24" fill="#df4a2e"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"/></svg>';
 const tl=document.getElementById("tl");
@@ -44,7 +66,8 @@ acara.forEach((a,i)=>{
  const side=i%2===0?"left":"right";
  const el=document.createElement("div");
  el.className=`tl-item ${side}`;el.dataset.cat=a.c;
- const posterBtn=a.pi!=null?`<button class="tl-cta" data-pi="${a.pi}">Lihat Poster &rarr;</button>`:"";
+ const pi=a.pk?posters.findIndex(p=>p.key===a.pk):-1;
+ const posterBtn=pi>=0?`<button class="tl-cta" data-pi="${pi}">Lihat Poster &rarr;</button>`:"";
  el.innerHTML=`
    <div class="tl-node n-${a.k}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[a.ic]}</svg></div>
    <div class="tl-card">
@@ -68,17 +91,6 @@ document.getElementById("filters").addEventListener("click",e=>{
  document.querySelectorAll(".tl-item").forEach(it=>it.classList.toggle("hide",f!=="all"&&it.dataset.cat!==f));
 });
 
-/* ---- DETAIL LOMBA carousel (poster asli) ---- */
-const posters=[
- {img:"images/poster1-hias-altar.jpg",t:"Lomba Hias Altar",s:"Antar Wilayah",form:"https://docs.google.com/forms/d/e/1FAIpQLScSJbNfHRfWNmokiGL1nm64IhLXPp8uL-1SYqZAlS3xTPCuMw/viewform"},
- {img:"images/poster2-jadwal-hias-altar.jpg",t:"Jadwal Hias Altar",s:"Antar Wilayah"},
- {img:"images/poster3-short-movie.jpg",t:"Lomba Short Movie",s:"Remaja SMP – SMA",form:"https://forms.gle/16EYc58SyrCpTzBa7"},
- {img:"images/poster4-demo-masak.jpg",t:"Demo Masak",s:"HUT Paroki"},
- {img:"images/poster5-mewarnai.jpg",t:"Lomba Mewarnai",s:"TK",form:"https://forms.gle/9g4jB4DHPbfeXEsB7"},
- {img:"images/poster6-paduan-suara.jpg",t:"Lomba Paduan Suara",s:"Antar Wilayah",form:"https://daftarlombapaduansuarahutgkkr56.my.canva.site/"},
- {img:"images/poster7-storytelling.jpg",t:"Lomba Storytelling",s:"SD Kelas 1 – 3",form:"https://forms.gle/u6n2EQCAPU8amGnH6"},
- {img:"images/poster8-narasi-kitab-suci.jpg",t:"Lomba Narasi Kitab Suci",s:"OMK & Dewasa 17 – 60"},
-];
 const lb=document.getElementById("lb"),lbimg=document.getElementById("lbimg");
 function openLB(src,alt){lbimg.src=src;lbimg.alt=alt;lb.classList.add("open")}
 lb.addEventListener("click",()=>lb.classList.remove("open"));
@@ -88,9 +100,11 @@ const track=document.getElementById("ctrack"),dotsEl=document.getElementById("cd
 let idx=0;
 posters.forEach((p,i)=>{
  const s=document.createElement("div");s.className="c-slide";
- const cta=p.form?`<a class="c-cta" href="${p.form}" target="_blank" rel="noopener">Daftar Sekarang &rarr;</a>`:"";
- s.innerHTML=`<img src="${p.img}" alt="Poster ${p.t}" loading="lazy"/><div class="cap"><b>${p.t}</b><small>${p.s}</small>${cta}</div>`;
- s.querySelector("img").addEventListener("click",()=>openLB(p.img,p.t));
+ const src=encodeURI(p.img);
+ const cta=p.form?`<a class="c-cta" href="${p.form}" target="_blank" rel="noopener">Daftar Sekarang &rarr;</a>`
+        :p.note?`<span class="c-note">${p.note}</span>`:"";
+ s.innerHTML=`<img src="${src}" alt="Poster ${p.t}" loading="lazy"/><div class="cap"><b>${p.t}</b><small>${p.s}</small>${cta}</div>`;
+ s.querySelector("img").addEventListener("click",()=>openLB(src,p.t));
  track.appendChild(s);
  const d=document.createElement("button");d.className="c-dot"+(i===0?" active":"");d.setAttribute("aria-label","Poster "+(i+1));
  d.addEventListener("click",()=>go(i));dotsEl.appendChild(d);
