@@ -180,12 +180,12 @@
   }
   @media(max-width:760px){
     .h1-title{font-size:6.2vw}
-    .hero.hero2 .hero-layer{flex-direction:column;align-items:center;text-align:center;gap:12px;
-      width:100%;margin:0 auto;padding:42px 24px clamp(165px,52vw,300px)}
-    .hero.hero2 .hero-bg{inset:auto 0 0 0;height:auto}
-    .hero.hero2 .h2-logo{width:clamp(130px,44%,190px)}
+    .hero.hero2 .hero-layer{flex-direction:column;align-items:center;text-align:center;gap:10px;
+      width:100%;margin:0;padding:38px 22px clamp(135px,40vw,220px)}
+    .hero.hero2 .hero-bg{inset:auto 0 0 0;width:100%;height:clamp(165px,44vw,250px);object-fit:cover;object-position:30% bottom}
+    .hero.hero2 .h2-logo{width:clamp(120px,40%,180px)}
     .hero.hero2 .h2-text{width:100%}
-    .h2-head{font-size:1.6rem}
-    .h2-para{font-size:.95rem}
+    .h2-head{font-size:1.55rem}
+    .h2-para{font-size:.94rem}
     .h2-para p{max-width:52ch;margin-left:auto;margin-right:auto}
   }
