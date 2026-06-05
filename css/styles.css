@@ -98,7 +98,7 @@
   .tl-card h3{font-size:1.16rem;color:var(--teal);margin-bottom:6px;line-height:1.2}
   .tl-loc{display:flex;align-items:center;gap:6px;font-size:13px;color:#5a6b61;font-weight:600}
   .tl-loc svg{flex-shrink:0}
-  .tl-cta{margin-top:12px;display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:12.5px;font-weight:700;
+  .tl-cta{margin-top:12px;margin-right:8px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:12.5px;font-weight:700;
           color:var(--green-deep);background:#eaf3e0;border:1px solid #d4e6c2;border-radius:30px;padding:7px 14px;cursor:pointer;transition:.2s}
   .tl-cta:hover{background:var(--green);color:#fff;border-color:var(--green)}
   /* node icon */
