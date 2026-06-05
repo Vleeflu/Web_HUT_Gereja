@@ -164,6 +164,8 @@
     .navlinks.open{transform:translateX(0)}
     .navlinks a{color:var(--cream)}
     .burger{display:flex;z-index:1101}
+    nav,nav.scrolled{background:#fff;box-shadow:0 2px 16px var(--shadow);padding:10px 22px}
+    .hero.hero1{margin-top:66px}
     .tl::before{left:22px}
     .tl-item{width:100%;left:0!important;text-align:left!important;padding:12px 0 12px 60px}
     .tl-card{max-width:none;display:block}
@@ -172,11 +174,7 @@
     .foot-grid{grid-template-columns:1fr;gap:28px}
   }
   @media(max-width:760px){
-    .hero.hero1{display:flex;flex-direction:column;background:var(--cream)}
-    .hero.hero1 .hero-bg{order:1}
-    .hero.hero1 .hero-layer{position:static;display:contents}
-    .h1-crest{position:static;order:2;width:58px;height:auto;margin:16px auto 0}
-    .h1-title{position:static;order:3;left:auto;top:auto;width:100%;text-align:center;padding:10px 22px 30px;font-size:6.8vw}
+    .h1-title{font-size:6.2vw}
     .hero.hero2{display:flex;flex-direction:column;align-items:center;background:var(--cream);overflow:visible}
     .hero.hero2 .hero-layer{position:static;display:contents}
     .hero.hero2 .h2-logo{position:static;order:1;width:46%;margin-top:-13%;margin-bottom:4px;aspect-ratio:1}
