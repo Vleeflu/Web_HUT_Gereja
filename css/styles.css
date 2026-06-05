@@ -175,7 +175,8 @@
   /* FOOTER */
   footer{background:var(--green-deep);color:var(--cream);padding:60px 0 32px}
   .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:38px;margin-bottom:36px}
-  .foot-brand{display:flex;gap:14px;align-items:flex-start}
+  .foot-brand{display:flex;gap:16px;align-items:flex-start}
+  .foot-marks{display:flex;flex-direction:column;gap:10px;flex-shrink:0}
   .foot-brand .foot-crest{width:72px;height:72px;border-radius:50%;background:#fff;border:2px solid var(--gold);object-fit:contain;padding:5px;flex-shrink:0}
   .foot-brand .foot-logo{width:72px;height:72px;border-radius:50%;background:#fff var(--logo) center/84% no-repeat;flex-shrink:0;border:2px solid var(--gold)}
   .foot-ig{display:inline-flex;align-items:center;gap:8px;font-weight:600}
