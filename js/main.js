@@ -19,10 +19,10 @@ const I={
 };
 /* ---- DATA (sesuai PDF) ---- */
 const acara=[
- {d:"30 Mei · 6, 13, 20, 27 Juni · 4, 10, 24 Juli",t:"Lomba Hias Altar",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"decor",k:"peach",btns:[{t:"Daftar",href:"https://docs.google.com/forms/d/e/1FAIpQLScSJbNfHRfWNmokiGL1nm64IhLXPp8uL-1SYqZAlS3xTPCuMw/viewform"},{t:"Lihat Jadwal",pk:"hias-altar-jadwal"}]},
+ {d:"30 Mei · 6, 13, 20, 27 Juni · 4, 10, 24 Juli",t:"Lomba Hias Altar",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"decor",k:"peach",btns:[{t:"Lihat Poster",pk:"hias-altar"},{t:"Lihat Jadwal",pk:"hias-altar-jadwal"}]},
  {d:"27 Juni 2026 · Tentatif",t:"Khitanan Massal",l:"GKP Lantai 1",c:"sosial",ic:"cross",k:"mint"},
  {d:"30 Juni 2026 · Pengumpulan",t:"Lomba Short Movie Wilayah — Remaja",l:"Pengumpulan Karya",c:"lomba",ic:"film",k:"blue",pk:"short-movie"},
- {d:"1 – 2 Juli 2026",t:"Social Project — Menanam Mangrove",l:"Pulau Tidung",c:"sosial",ic:"hands",k:"lemon"},
+ {d:"1 – 2 Juli 2026",t:"Social Project — Menanam Mangrove",l:"Pulau Tidung",c:"sosial",ic:"hands",k:"lemon",pk:"social-project"},
  {d:"4 & 18 Juli 2026",t:"Fun Sport — Volley & Soccer",l:"Lapangan Tarakanita",c:"olahraga",ic:"ball",k:"lilac",pk:"fun-sport"},
  {d:"4 Juli 2026",t:"Demo & Lomba Masak",l:"GKP Lantai 1",c:"lomba",ic:"chef",k:"rose",pk:"demo-masak"},
  {d:"5 Juli 2026",t:"Lomba Mewarnai Anak",l:"Kelas Tarakanita",c:"lomba",ic:"brush",k:"peach",pk:"mewarnai"},
@@ -42,21 +42,22 @@ const acara=[
 /* ---- POSTER carousel (file di images/content) ---- */
 const posters=[
  {key:"hias-altar",img:"images/content/[Liturgi] lomba hias altar.jpg",t:"Lomba Hias Altar",s:"Antar Wilayah",form:"https://docs.google.com/forms/d/e/1FAIpQLScSJbNfHRfWNmokiGL1nm64IhLXPp8uL-1SYqZAlS3xTPCuMw/viewform"},
- {key:"hias-altar-jadwal",img:"images/content/[liturgi]urutan lomba hias altar.jpeg",t:"Urutan Lomba Hias Altar",s:"Jadwal & Ketentuan"},
+ {key:"hias-altar-jadwal",img:"images/content/[Liturgi] Jadwal Hias Altar.png",t:"Urutan Lomba Hias Altar",s:"Jadwal & Ketentuan"},
  {key:"short-movie",img:"images/content/[BIA BIR] short movie.jpeg",t:"Lomba Short Movie",s:"Wilayah — Remaja",form:"https://forms.gle/16EYc58SyrCpTzBa7"},
+ {key:"social-project",img:"images/content/[LH] Social Project.jpg",t:"Social Project — Menanam Mangrove",s:"Umum · Pulau Tidung"},
  {key:"fun-sport",img:"images/content/[omk] fun sport (belum fixed karena lokasi blm disetujui}.jpeg",t:"Fun Sport — Volley & Soccer",s:"Antar Wilayah",form:"https://forms.gle/rs6ccq2cc2NHXKDA8"},
  {key:"demo-masak",img:"images/content/[pse] demo masak.jpeg",t:"Demo & Lomba Masak",s:"HUT Paroki"},
  {key:"mewarnai",img:"images/content/[BIA BIR] lomba mewarnai.jpeg",t:"Lomba Mewarnai Anak",s:"TK",form:"https://forms.gle/9g4jB4DHPbfeXEsB7"},
  {key:"padus",img:"images/content/[liturgi] LOMBA PADUS.png",t:"Lomba Paduan Suara",s:"Antar Wilayah",form:"https://daftarlombapaduansuarahutgkkr56.my.canva.site/"},
  {key:"storytelling",img:"images/content/[BIAR BIR story telling].jpeg",t:"Lomba Story Telling Anak",s:"SD Kelas 1 – 3",form:"https://forms.gle/u6n2EQCAPU8amGnH6"},
- {key:"narasi",img:"images/content/[kks]lomba narasi kitab suci .jpeg",t:"Lomba Narasi Kitab Suci",s:"OMK & Dewasa 17 – 60"},
- {key:"got-talent",img:"images/content/[OMK] got talent.jpeg",t:"Lomba Got Talent",s:"OMK",note:"Daftar via Koordinator Wilayah masing-masing"},
+ {key:"narasi",img:"images/content/[kks]lomba narasi kitab suci .jpeg",t:"Lomba Narasi Kitab Suci",s:"OMK & Dewasa 17 – 60",form:"https://docs.google.com/forms/d/e/1FAIpQLSftY6Wk6q2VDXgUPxT0sjj6AT53Cs5DR4DrY5Uu1EGjBO0ryQ/viewform"},
+ {key:"got-talent",img:"images/content/[OMK] got talent.jpeg",t:"Lomba Got Talent",s:"Anak, OMK, Dewasa",note:"Daftar via Koordinator Wilayah masing-masing"},
  {key:"seminar",img:"images/content/[SKK] seminar.jpeg",t:"Seminar Sarasehan Keluarga",s:"Keluarga"},
- {key:"video-bible",img:"images/content/[KKS]lomba video bible in daily life .jpeg",t:'Lomba Video "Bible in Daily Life"',s:"Umum"},
- {key:"bible-talent",img:"images/content/[KKS]bible talent show.jpeg",t:"Lomba Bible Talent Show",s:"Antar Wilayah"},
+ {key:"video-bible",img:"images/content/[KKS]lomba video bible in daily life .jpeg",t:'Lomba Video "Bible in Daily Life"',s:"Antar Lingkungan",form:"https://docs.google.com/forms/d/e/1FAIpQLScTNEf-SUqTaVHIWIueHflKL-TZ4B4j38H04jwcGDMEcVkz2w/viewform"},
+ {key:"bible-talent",img:"images/content/[KKS]bible talent show.jpeg",t:"Lomba Bible Talent Show",s:"Antar Wilayah",form:"https://docs.google.com/forms/d/e/1FAIpQLScYnRaDeLV1NnaVcke5G32xF4If9Ma9gsPrdMPp07b2sqv_hw/viewform"},
  {key:"family-bible",img:"images/content/[BIA BIR] family bible.jpeg",t:"Lomba Family Bible",s:"Keluarga",form:"https://docs.google.com/forms/d/e/1FAIpQLSfy266kOWUQkVb9mebwR2r8rh8qqhodHjii4XoKftPjduMMWw/viewform"},
  {key:"bazar",img:"images/content/[PSE]bazaar UMKM.jpeg",t:"Bazar UMKM",s:"Umum"},
- {key:"jalan-sehat",img:"images/content/[HAAK] jalan sehat, senam, line dance.png",t:"Jalan Sehat, Senam Pagi & Line Dance",s:"Umum"},
+ {key:"jalan-sehat",img:"images/content/[HAAK] jalan sehat, senam, line dance.png",t:"Jalan Sehat, Senam Pagi & Line Dance",s:"Wilayah dan Umum"},
  {key:"malam-puncak",img:"images/content/[panitia]malam puncak.jpeg",t:"Malam Puncak",s:"Puncak Perayaan"},
  {key:"donor",img:"images/content/[PSE] Donor Darah.jpeg",t:"Donor Darah",s:"Umum"},
 ];
