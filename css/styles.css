@@ -28,7 +28,7 @@
       background:linear-gradient(to bottom,rgba(255,255,255,.95) 0%,rgba(255,255,255,.68) 45%,rgba(255,255,255,0) 100%)}
   nav.scrolled{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);box-shadow:0 4px 28px var(--shadow);padding:8px 22px}
   .brand{display:flex;align-items:center;gap:12px}
-  .brand .brand-logo{width:46px;height:46px;border-radius:50%;background:#fff var(--logo) center/82% no-repeat;border:2px solid var(--gold);box-shadow:0 4px 14px var(--shadow);flex-shrink:0}
+  .brand .brand-logo{width:46px;height:46px;border-radius:50%;background:#fff url('../images/crest.png') center/74% no-repeat;border:2px solid var(--gold);box-shadow:0 4px 14px var(--shadow);flex-shrink:0}
   .brand .bt{font-family:"Fraunces",serif;font-weight:700;color:var(--teal);font-size:16px;line-height:1.05}
   .brand .bt small{display:block;font-family:"Plus Jakarta Sans";font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
   .navlinks{display:flex;align-items:center;gap:26px;font-size:14px;font-weight:600}
