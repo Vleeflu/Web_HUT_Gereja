@@ -19,24 +19,24 @@ const I={
 };
 /* ---- DATA (sesuai PDF) ---- */
 const acara=[
- {d:"30 Mei · 6, 13, 20, 27 Juni · 4, 10, 24 Juli",t:"Lomba Hias Altar",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"decor",k:"peach",btns:[{t:"Lihat Poster",pk:"hias-altar"},{t:"Lihat Jadwal",pk:"hias-altar-jadwal"}]},
+ {d:"30 Mei · 6, 13, 20, 27 Juni · 4, 10, 24 Juli",t:"Lomba Hias Altar",l:"Paroki Rawamangun, Gereja Keluarga Kudus",c:"lomba",ic:"decor",k:"peach",btns:[{t:"Lihat Poster",pk:"hias-altar"},{t:"Lihat Jadwal",pk:"hias-altar-jadwal"}]},
  {d:"27 Juni 2026 · Tentatif",t:"Khitanan Massal",l:"GKP Lantai 1",c:"sosial",ic:"cross",k:"mint"},
  {d:"1 – 2 Juli 2026",t:"Social Project — Menanam Mangrove",l:"Pulau Tidung",c:"sosial",ic:"hands",k:"lemon",pk:"social-project"},
  {d:"4 & 18 Juli 2026",t:"Fun Sport — Volley & Soccer",l:"Lapangan Tarakanita",c:"olahraga",ic:"ball",k:"lilac",pk:"fun-sport"},
  {d:"4 Juli 2026",t:"Demo & Lomba Masak",l:"GKP Lantai 1",c:"lomba",ic:"chef",k:"rose",pk:"demo-masak"},
  {d:"5 Juli 2026",t:"Lomba Mewarnai Anak",l:"Kelas Tarakanita",c:"lomba",ic:"brush",k:"peach",pk:"mewarnai"},
- {d:"11 Juli 2026",t:"Lomba Paduan Suara",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"music",k:"mint",pk:"padus"},
- {d:"12 Juli 2026",t:"Lomba Story Telling Anak",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"book",k:"blue",pk:"storytelling"},
+ {d:"11 Juli 2026",t:"Lomba Paduan Suara",l:"Paroki Rawamangun, Gereja Keluarga Kudus",c:"lomba",ic:"music",k:"mint",pk:"padus"},
+ {d:"12 Juli 2026",t:"Lomba Story Telling Anak",l:"Paroki Rawamangun, Gereja Keluarga Kudus",c:"lomba",ic:"book",k:"blue",pk:"storytelling"},
  {d:"12 Juli 2026",t:"Lomba Narasi Kitab Suci",l:"GKP Lantai 1",c:"lomba",ic:"bible",k:"lemon",pk:"narasi"},
  {d:"12 Juli 2026",t:"Lomba Got Talent",l:"GKP Lantai 3",c:"lomba",ic:"star",k:"lilac",pk:"got-talent"},
  {d:"17 Juli 2026 · Pengumpulan",t:"Lomba Short Movie Wilayah — Remaja",l:"Pengumpulan Karya",c:"lomba",ic:"film",k:"blue",pk:"short-movie"},
  {d:"18 Juli 2026",t:"Seminar Sarasehan Keluarga",l:"GKP Lantai 3",c:"rohani",ic:"people",k:"rose",pk:"seminar"},
  {d:"18 Juli 2026 · Pengumpulan",t:'Lomba Video "Bible in Daily Life"',l:"Pengumpulan Karya",c:"lomba",ic:"film",k:"peach",pk:"video-bible"},
- {d:"19 Juli 2026",t:"Lomba Bible Talent Show",l:"Gereja Keluarga Kudus Rawamangun",c:"lomba",ic:"bible",k:"mint",pk:"bible-talent"},
+ {d:"19 Juli 2026",t:"Lomba Bible Talent Show",l:"Paroki Rawamangun, Gereja Keluarga Kudus",c:"lomba",ic:"bible",k:"mint",pk:"bible-talent"},
  {d:"19 Juli 2026",t:"Lomba Family Bible",l:"GKP Lantai 2",c:"lomba",ic:"book",k:"blue",pk:"family-bible"},
  {d:"19 Juli 2026",t:"Bazar UMKM",l:"Area Gereja",c:"sosial",ic:"shop",k:"lemon",pk:"bazar"},
  {d:"25 Juli 2026",t:"Lomba Jalan Sehat, Senam Pagi & Line Dance",l:"Parkiran GKP",c:"olahraga",ic:"walk",k:"lilac",pk:"jalan-sehat"},
- {d:"25 Juli 2026",t:"Malam Puncak",l:"Gereja Keluarga Kudus dan Parkiran GKP",c:"puncak",ic:"peak",k:"rose",pk:"malam-puncak"},
+ {d:"25 Juli 2026",t:"Malam Puncak",l:"Paroki Rawamangun, Gereja Keluarga Kudus & Parkiran GKP",c:"puncak",ic:"peak",k:"rose",pk:"malam-puncak"},
  {d:"26 Juli 2026",t:"Donor Darah",l:"GKP Lantai 1",c:"sosial",ic:"drop",k:"peach",pk:"donor"},
 ];
 /* ---- POSTER carousel (file di images/content) ---- */
