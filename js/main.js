@@ -36,7 +36,7 @@ const acara=[
  {d:"19 Juli 2026",t:"Lomba Family Bible",l:"GKP Lantai 2",c:"lomba",ic:"book",k:"blue",pk:"family-bible"},
  {d:"19 Juli 2026",t:"Bazar UMKM",l:"Area Gereja",c:"sosial",ic:"shop",k:"lemon",pk:"bazar"},
  {d:"25 Juli 2026",t:"Lomba Jalan Sehat, Senam Pagi & Line Dance",l:"Parkiran GKP",c:"olahraga",ic:"walk",k:"lilac",pk:"jalan-sehat"},
- {d:"25 Juli 2026",t:"Malam Puncak",l:"Parkiran GKP",c:"puncak",ic:"peak",k:"rose",pk:"malam-puncak"},
+ {d:"25 Juli 2026",t:"Malam Puncak",l:"Parkiran GKP",c:"puncak",ic:"peak",k:"rose",pk:"malam-puncak",hl:[{e:"✝️",t:"Misa Syukuran"},{e:"🎉",t:"Pesta Rakyat"},{e:"🎁",t:"Doorprize"},{e:"✨",t:"Acara Menarik Lainnya"}]},
  {d:"26 Juli 2026",t:"Donor Darah",l:"GKP Lantai 1",c:"sosial",ic:"drop",k:"peach",pk:"donor"},
 ];
 /* ---- POSTER carousel (file di images/content) ---- */
@@ -61,7 +61,7 @@ const posters=[
  {key:"malam-puncak",img:"images/content/[panitia]malam puncak.jpeg",t:"Malam Puncak",s:"Puncak Perayaan"},
  {key:"donor",img:"images/content/[PSE] Donor Darah.jpeg",t:"Donor Darah",s:"Umum"},
 ];
-const pin='<svg width="15" height="15" viewBox="0 0 24 24" fill="#df4a2e"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"/></svg>';
+const pin='📌';
 const tl=document.getElementById("tl");
 acara.forEach((a,i)=>{
  const side=i%2===0?"left":"right";
@@ -74,12 +74,14 @@ acara.forEach((a,i)=>{
  };
  const btns=a.btns||(a.pk?[{t:"Lihat Poster",pk:a.pk}]:[]);
  const posterBtn=btns.map(mkBtn).join("");
+ const hl=a.hl?`<ul class="tl-hl">${a.hl.map(x=>`<li><span class="e">${x.e}</span>${x.t}</li>`).join("")}</ul>`:"";
  el.innerHTML=`
    <div class="tl-node n-${a.k}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[a.ic]}</svg></div>
    <div class="tl-card">
      <span class="tl-pill p-${a.k}">${a.d}</span>
      <h3>${a.t}</h3>
-     <div class="tl-loc">${pin}<span>${a.l}</span></div>
+     <div class="tl-loc"><span class="e">${pin}</span><span>${a.l}</span></div>
+     ${hl}
      ${posterBtn}
    </div>`;
  tl.appendChild(el);

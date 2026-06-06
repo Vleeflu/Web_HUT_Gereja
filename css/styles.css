@@ -123,8 +123,7 @@
   .tl-card:hover{transform:translateY(-4px);box-shadow:0 16px 34px var(--shadow)}
   .tl-pill{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.03em;padding:4px 12px;border-radius:30px;margin-bottom:9px;color:var(--green-deep)}
   .tl-card h3{font-size:1.16rem;color:var(--teal);margin-bottom:6px;line-height:1.2}
-  .tl-loc{display:flex;align-items:center;gap:6px;font-size:13px;color:#5a6b61;font-weight:600}
-  .tl-loc svg{flex-shrink:0}
+  .tl-loc{display:flex;align-items:center;gap:9px;font-size:13.5px;color:#5a6b61;font-weight:600}
   .tl-cta{margin-top:12px;margin-right:8px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:12.5px;font-weight:700;
           color:var(--green-deep);background:#eaf3e0;border:1px solid #d4e6c2;border-radius:30px;padding:7px 14px;cursor:pointer;transition:.2s}
   .tl-cta:hover{background:var(--green);color:#fff;border-color:var(--green)}
@@ -137,6 +136,21 @@
 
   .p-peach{background:#f7dcc4}.p-mint{background:#d2efe0}.p-blue{background:#cbe2f2}.p-lemon{background:#f6e9b6}.p-lilac{background:#e6ddf0}.p-rose{background:#f6d4d4}
   .n-peach{background:#f7dcc4;color:#c6764a}.n-mint{background:#d2efe0;color:#2f8a63}.n-blue{background:#cbe2f2;color:#3f7fb0}.n-lemon{background:#f6e9b6;color:#b89a2e}.n-lilac{background:#e6ddf0;color:#7a63a8}.n-rose{background:#f6d4d4;color:#c25555}
+
+  /* highlight Malam Puncak */
+  .tl-item[data-cat="puncak"] .tl-card{position:relative;overflow:hidden;border:1px solid rgba(201,162,59,.55);
+    background:linear-gradient(135deg,#1f5b3a 0%,#2f7a48 60%,#3a8a4f 100%);box-shadow:0 20px 48px rgba(31,91,58,.40)}
+  .tl-item[data-cat="puncak"] .tl-card::after{content:"";position:absolute;right:-34px;top:-34px;width:130px;height:130px;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,162,59,.45),transparent 70%);pointer-events:none}
+  .tl-item[data-cat="puncak"] .tl-pill{background:linear-gradient(160deg,#f6da82,#c9a23b);color:#473208}
+  .tl-item[data-cat="puncak"] .tl-card h3{color:#fff}
+  .tl-item[data-cat="puncak"] .tl-loc{color:#dcecca}
+  .tl-item[data-cat="puncak"] .tl-node{background:linear-gradient(160deg,#f6da82,#c9a23b);color:#473208;
+    box-shadow:0 4px 14px var(--shadow),0 0 22px 5px rgba(201,162,59,.55)}
+  .tl-hl{list-style:none;display:flex;flex-direction:column;gap:5px;margin-top:11px}
+  .tl-hl li{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600}
+  .tl-card .e{flex-shrink:0;width:20px;text-align:right;font-size:15px;line-height:1}
+  .tl-item[data-cat="puncak"] .tl-hl li{color:#eaf5dd}
 
   /* DETAIL LOMBA */
   #lomba{background:var(--cream)}
