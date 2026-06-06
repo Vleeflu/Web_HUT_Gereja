@@ -137,28 +137,34 @@ addEventListener("keydown",e=>{
 
 /* ---- auto-slide carousel (ganti tiap 5 detik) ---- */
 const AUTO_MS=5000;
+const reduceMotion=matchMedia("(prefers-reduced-motion: reduce)").matches;
 let auto;
-function startAuto(){auto=setInterval(()=>{if(!lb.classList.contains("open"))go(idx+1)},AUTO_MS);}
+function startAuto(){if(reduceMotion)return;auto=setInterval(()=>{if(!lb.classList.contains("open"))go(idx+1)},AUTO_MS);}
 function resetAuto(){clearInterval(auto);startAuto();}
 startAuto();
 const carousel=document.getElementById("carousel");
 carousel.addEventListener("mouseenter",()=>clearInterval(auto));
 carousel.addEventListener("mouseleave",resetAuto);
+carousel.addEventListener("focusin",()=>clearInterval(auto));
+carousel.addEventListener("focusout",resetAuto);
 document.addEventListener("visibilitychange",()=>document.hidden?clearInterval(auto):resetAuto());
 
 /* ---- countdown ---- */
 const target=new Date("2026-07-25T18:00:00+07:00").getTime();
 const $=id=>document.getElementById(id);
-function tick(){let x=Math.max(0,target-Date.now());
+let cdInt;
+function tick(){const left=target-Date.now();
+ if(left<=0){document.querySelector(".cd-main")?.classList.add("is-ended");clearInterval(cdInt);}
+ let x=Math.max(0,left);
  const day=Math.floor(x/864e5);x-=day*864e5;const h=Math.floor(x/36e5);x-=h*36e5;const m=Math.floor(x/6e4);x-=m*6e4;const s=Math.floor(x/1e3);
  const p=n=>String(n).padStart(2,"0");$("cd-d").textContent=day;$("cd-h").textContent=p(h);$("cd-m").textContent=p(m);$("cd-s").textContent=p(s);}
-tick();setInterval(tick,1000);
+cdInt=setInterval(tick,1000);tick();
 
 /* ---- nav + reveal ---- */
 const nav=document.getElementById("nav");
 addEventListener("scroll",()=>nav.classList.toggle("scrolled",scrollY>40));
 const burger=document.getElementById("burger"),links=document.getElementById("navlinks");
-burger.addEventListener("click",()=>links.classList.toggle("open"));
-links.addEventListener("click",e=>{if(e.target.tagName==="A")links.classList.remove("open")});
+burger.addEventListener("click",()=>burger.setAttribute("aria-expanded",links.classList.toggle("open")));
+links.addEventListener("click",e=>{if(e.target.tagName==="A"){links.classList.remove("open");burger.setAttribute("aria-expanded","false");}});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.1});
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
