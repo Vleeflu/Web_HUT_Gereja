@@ -52,7 +52,7 @@ const posters=[
  {key:"narasi",img:"images/content/[kks]lomba narasi kitab suci .jpeg",t:"Lomba Narasi Kitab Suci",s:"OMK & Dewasa 17 – 60",form:"https://docs.google.com/forms/d/e/1FAIpQLSftY6Wk6q2VDXgUPxT0sjj6AT53Cs5DR4DrY5Uu1EGjBO0ryQ/viewform"},
  {key:"got-talent",img:"images/content/[OMK] got talent.jpeg",t:"Lomba Got Talent",s:"Anak, OMK, Dewasa",note:"Daftar via Koordinator Wilayah masing-masing"},
  {key:"short-movie",img:"images/content/[BIA BIR] short movie.jpeg",t:"Lomba Short Movie",s:"Wilayah — Remaja",form:"https://forms.gle/16EYc58SyrCpTzBa7"},
- {key:"seminar",img:"images/content/[SKK] seminar.jpeg",t:"Seminar Sarasehan Keluarga",s:"Keluarga"},
+ {key:"seminar",img:"images/content/[SKK] seminar keluarga.jpeg",t:"Seminar Sarasehan Keluarga",s:"Keluarga"},
  {key:"video-bible",img:"images/content/[KKS]lomba video bible in daily life .jpeg",t:'Lomba Video "Bible in Daily Life"',s:"Antar Lingkungan",form:"https://docs.google.com/forms/d/e/1FAIpQLScTNEf-SUqTaVHIWIueHflKL-TZ4B4j38H04jwcGDMEcVkz2w/viewform"},
  {key:"bible-talent",img:"images/content/[KKS]bible talent show.jpeg",t:"Lomba Bible Talent Show",s:"Antar Wilayah",form:"https://docs.google.com/forms/d/e/1FAIpQLScYnRaDeLV1NnaVcke5G32xF4If9Ma9gsPrdMPp07b2sqv_hw/viewform"},
  {key:"family-bible",img:"images/content/[BIA BIR] family bible.jpeg",t:"Lomba Family Bible",s:"Keluarga",form:"https://docs.google.com/forms/d/e/1FAIpQLSfy266kOWUQkVb9mebwR2r8rh8qqhodHjii4XoKftPjduMMWw/viewform"},
