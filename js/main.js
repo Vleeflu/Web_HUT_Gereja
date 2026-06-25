@@ -57,7 +57,7 @@ const posters=[
  {key:"bible-talent",img:"images/content/[KKS]bible talent show.jpeg",t:"Lomba Bible Talent Show",s:"Antar Wilayah",form:"https://docs.google.com/forms/d/e/1FAIpQLScYnRaDeLV1NnaVcke5G32xF4If9Ma9gsPrdMPp07b2sqv_hw/viewform"},
  {key:"family-bible",img:"images/content/[BIA BIR] family bible.jpeg",t:"Lomba Family Bible",s:"Keluarga",form:"https://docs.google.com/forms/d/e/1FAIpQLSfy266kOWUQkVb9mebwR2r8rh8qqhodHjii4XoKftPjduMMWw/viewform"},
  {key:"bazar",img:"images/content/[PSE]bazaar UMKM.jpeg",t:"Bazar UMKM",s:"Umum"},
- {key:"jalan-sehat",img:"images/content/[HAAK] jalan sehat, senam, line dance2.png",t:"Jalan Sehat, Senam Pagi & Line Dance",s:"Wilayah dan Umum",note:"Daftar via Koordinator Wilayah masing-masing"},
+ {key:"jalan-sehat",img:"images/content/[HAAK] jalan sehat, senam, line dance 2.jpeg",t:"Jalan Sehat, Senam Pagi & Line Dance",s:"Wilayah dan Umum",note:"Daftar via Koordinator Wilayah masing-masing"},
  {key:"malam-puncak",img:"images/content/[panitia]malam puncak.jpeg",t:"Malam Puncak",s:"Puncak Perayaan"},
  {key:"donor",img:"images/content/[PSE] Donor Darah.jpeg",t:"Donor Darah",s:"Umum"},
 ];
