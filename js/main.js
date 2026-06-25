@@ -20,7 +20,7 @@ const I={
 /* ---- DATA (sesuai PDF) ---- */
 const acara=[
  {d:"30 Mei · 6, 13, 20, 27 Juni · 4, 10, 24 Juli",t:"Lomba Hias Altar",l:"Paroki Rawamangun, Gereja Keluarga Kudus",c:"lomba",ic:"decor",k:"peach",btns:[{t:"Lihat Poster",pk:"hias-altar"},{t:"Lihat Jadwal",pk:"hias-altar-jadwal"}]},
- {d:"27 Juni 2026 · Tentatif",t:"Khitanan Massal",l:"GKP Lantai 1",c:"sosial",ic:"cross",k:"mint"},
+ {d:"4 Juli · Tentatif",t:"Khitanan Massal",l:"GKP Lantai 1",c:"sosial",ic:"cross",k:"mint"},
  {d:"1 – 2 Juli 2026",t:"Social Project — Menanam Mangrove",l:"Pulau Tidung",c:"sosial",ic:"hands",k:"lemon",pk:"social-project"},
  {d:"4 & 18 Juli 2026",t:"Fun Sport — Volley & Soccer",l:"Lapangan Tarakanita",c:"olahraga",ic:"ball",k:"lilac",pk:"fun-sport"},
  {d:"4 Juli 2026",t:"Demo & Lomba Masak",l:"GKP Lantai 1",c:"lomba",ic:"chef",k:"rose",pk:"demo-masak"},
@@ -57,7 +57,7 @@ const posters=[
  {key:"bible-talent",img:"images/content/[KKS]bible talent show.jpeg",t:"Lomba Bible Talent Show",s:"Antar Wilayah",form:"https://docs.google.com/forms/d/e/1FAIpQLScYnRaDeLV1NnaVcke5G32xF4If9Ma9gsPrdMPp07b2sqv_hw/viewform"},
  {key:"family-bible",img:"images/content/[BIA BIR] family bible.jpeg",t:"Lomba Family Bible",s:"Keluarga",form:"https://docs.google.com/forms/d/e/1FAIpQLSfy266kOWUQkVb9mebwR2r8rh8qqhodHjii4XoKftPjduMMWw/viewform"},
  {key:"bazar",img:"images/content/[PSE]bazaar UMKM.jpeg",t:"Bazar UMKM",s:"Umum"},
- {key:"jalan-sehat",img:"images/content/[HAAK] jalan sehat, senam, line dance.png",t:"Jalan Sehat, Senam Pagi & Line Dance",s:"Wilayah dan Umum",note:"Daftar via Koordinator Wilayah masing-masing"},
+ {key:"jalan-sehat",img:"images/content/[HAAK] jalan sehat, senam, line dance2.png",t:"Jalan Sehat, Senam Pagi & Line Dance",s:"Wilayah dan Umum",note:"Daftar via Koordinator Wilayah masing-masing"},
  {key:"malam-puncak",img:"images/content/[panitia]malam puncak.jpeg",t:"Malam Puncak",s:"Puncak Perayaan"},
  {key:"donor",img:"images/content/[PSE] Donor Darah.jpeg",t:"Donor Darah",s:"Umum"},
 ];
