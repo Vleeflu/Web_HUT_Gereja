@@ -20,7 +20,6 @@ const I={
 /* ---- DATA (sesuai PDF) ---- */
 const acara=[
  {d:"30 Mei · 6, 13, 20, 27 Juni · 4, 10, 24 Juli 2026",t:"Lomba Hias Altar",l:"Paroki Rawamangun, Gereja Keluarga Kudus",c:"lomba",ic:"decor",k:"peach",btns:[{t:"Lihat Poster",pk:"hias-altar"},{t:"Lihat Jadwal",pk:"hias-altar-jadwal"}]},
- {d:"4 Juli 2026",t:"Khitanan Massal",l:"GKP Lantai 1",c:"sosial",ic:"cross",k:"mint"},
  {d:"1 – 2 Juli 2026",t:"Social Project — Menanam Mangrove",l:"Pulau Tidung",c:"sosial",ic:"hands",k:"lemon",pk:"social-project"},
  {d:"4 & 18 Juli 2026",t:"Fun Sport — Volley & Soccer",l:"Lapangan Tarakanita",c:"olahraga",ic:"ball",k:"lilac",pk:"fun-sport"},
  {d:"4 Juli 2026",t:"Demo & Lomba Masak",l:"GKP Lantai 1",c:"lomba",ic:"chef",k:"rose",pk:"demo-masak"},
@@ -60,6 +59,8 @@ const posters=[
  {key:"jalan-sehat",img:"images/content/[HAAK] jalan sehat, senam, line dance 2.jpeg",t:"Jalan Sehat, Senam Pagi & Line Dance",s:"Wilayah dan Umum",note:"Daftar via Koordinator Wilayah masing-masing"},
  {key:"malam-puncak",img:"images/content/[panitia]malam puncak.jpeg",t:"Malam Puncak",s:"Puncak Perayaan"},
  {key:"donor",img:"images/content/[PSE] Donor Darah.jpeg",t:"Donor Darah",s:"Umum"},
+ {key:"guest-star",img:"images/content/Lomba Masak.jpeg",t:"Lomba Masak",s:"Umum"},
+ {key:"guest-star",img:"images/content/Payung Teduh.jpeg",t:"Guest Star - Payung Teduh",s:"Umum"},
 ];
 const pin='📌';
 const tl=document.getElementById("tl");
