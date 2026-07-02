@@ -22,7 +22,7 @@ const acara=[
  {d:"30 Mei · 6, 13, 20, 27 Juni · 4, 10, 24 Juli 2026",t:"Lomba Hias Altar",l:"Paroki Rawamangun, Gereja Keluarga Kudus",c:"lomba",ic:"decor",k:"peach",btns:[{t:"Lihat Poster",pk:"hias-altar"},{t:"Lihat Jadwal",pk:"hias-altar-jadwal"}]},
  {d:"1 – 2 Juli 2026",t:"Social Project — Menanam Mangrove",l:"Pulau Tidung",c:"sosial",ic:"hands",k:"lemon",pk:"social-project"},
  {d:"4 & 18 Juli 2026",t:"Fun Sport — Volley & Soccer",l:"Lapangan Tarakanita",c:"olahraga",ic:"ball",k:"lilac",pk:"fun-sport"},
- {d:"4 Juli 2026",t:"Demo & Lomba Masak",l:"GKP Lantai 1",c:"lomba",ic:"chef",k:"rose",pk:"demo-masak"},
+ {d:"4 Juli 2026",t:"Demo & Lomba Masak",l:"GKP Lantai 1",c:"lomba",ic:"chef",k:"rose",btns:[{t:"Demo Masak",pk:"demo-masak"},{t:"Lomba Masak",pk:"lomba-masak"}]},
  {d:"5 Juli 2026",t:"Lomba Mewarnai Anak",l:"Kelas Tarakanita",c:"lomba",ic:"brush",k:"peach",pk:"mewarnai"},
  {d:"11 Juli 2026",t:"Lomba Paduan Suara",l:"Paroki Rawamangun, Gereja Keluarga Kudus",c:"lomba",ic:"music",k:"mint",pk:"padus"},
  {d:"12 Juli 2026",t:"Lomba Story Telling Anak",l:"Paroki Rawamangun, Gereja Keluarga Kudus",c:"lomba",ic:"book",k:"blue",pk:"storytelling"},
@@ -44,7 +44,8 @@ const posters=[
  {key:"hias-altar-jadwal",img:"images/content/[Liturgi] Jadwal Hias Altar.png",t:"Urutan Lomba Hias Altar",s:"Jadwal & Ketentuan"},
  {key:"social-project",img:"images/content/[LH] Social Project.jpg",t:"Social Project — Menanam Mangrove",s:"Umum · Pulau Tidung"},
  {key:"fun-sport",img:"images/content/[OMK] Fun Volly & minisoccer pot.jpg",t:"Fun Sport — Volley & Soccer",s:"Antar Wilayah",form:"https://forms.gle/rs6ccq2cc2NHXKDA8"},
- {key:"demo-masak",img:"images/content/[pse] demo masak.jpeg",t:"Demo & Lomba Masak",s:"HUT Paroki"},
+ {key:"demo-masak",img:"images/content/[pse] demo masak.jpeg",t:"Demo Masak",s:"HUT Paroki"},
+ {key:"lomba-masak",img:"images/content/Lomba Masak.jpeg",t:"Lomba Masak",s:"HUT Paroki"},
  {key:"mewarnai",img:"images/content/[BIA BIR] lomba mewarnai.jpeg",t:"Lomba Mewarnai Anak",s:"TK",form:"https://forms.gle/9g4jB4DHPbfeXEsB7"},
  {key:"padus",img:"images/content/[liturgi] LOMBA PADUS.png",t:"Lomba Paduan Suara",s:"Antar Wilayah",form:"https://daftarlombapaduansuarahutgkkr56.my.canva.site/"},
  {key:"storytelling",img:"images/content/[BIAR BIR story telling].jpeg",t:"Lomba Story Telling Anak",s:"SD Kelas 1 – 3",form:"https://forms.gle/u6n2EQCAPU8amGnH6"},
@@ -59,8 +60,6 @@ const posters=[
  {key:"jalan-sehat",img:"images/content/[HAAK] jalan sehat, senam, line dance 2.jpeg",t:"Jalan Sehat, Senam Pagi & Line Dance",s:"Wilayah dan Umum",note:"Daftar via Koordinator Wilayah masing-masing"},
  {key:"malam-puncak",img:"images/content/[panitia]malam puncak.jpeg",t:"Malam Puncak",s:"Puncak Perayaan"},
  {key:"donor",img:"images/content/[PSE] Donor Darah.jpeg",t:"Donor Darah",s:"Umum"},
- {key:"guest-star",img:"images/content/Lomba Masak.jpeg",t:"Lomba Masak",s:"Umum"},
- {key:"guest-star",img:"images/content/Payung Teduh.jpeg",t:"Guest Star - Payung Teduh",s:"Umum"},
 ];
 const pin='📌';
 const tl=document.getElementById("tl");
@@ -89,7 +88,7 @@ tl.addEventListener("click",e=>{
  const b=e.target.closest("button.tl-cta");if(!b)return;
  const pi=+b.dataset.pi;
  document.getElementById("lomba").scrollIntoView({behavior:"smooth"});
- go(pi);
+ go(pi);resetAuto();
 });
 document.getElementById("filters").addEventListener("click",e=>{
  const b=e.target.closest(".chip");if(!b)return;
@@ -107,6 +106,7 @@ const lb=document.getElementById("lb"),lbimg=document.getElementById("lbimg");
 function openLB(src,alt){lbimg.src=src;lbimg.alt=alt;lb.classList.add("open")}
 lb.addEventListener("click",()=>lb.classList.remove("open"));
 document.getElementById("lbx").addEventListener("click",()=>lb.classList.remove("open"));
+document.querySelectorAll("[data-lb]").forEach(el=>el.addEventListener("click",()=>openLB(encodeURI(el.dataset.lb),el.dataset.lbAlt||"")));
 
 const track=document.getElementById("ctrack"),dotsEl=document.getElementById("cdots");
 let idx=0;
