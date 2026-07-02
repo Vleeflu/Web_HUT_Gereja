@@ -88,7 +88,7 @@ tl.addEventListener("click",e=>{
  const b=e.target.closest("button.tl-cta");if(!b)return;
  const pi=+b.dataset.pi;
  document.getElementById("lomba").scrollIntoView({behavior:"smooth"});
- go(pi);resetAuto();
+ go(pi);pauseAuto();
 });
 document.getElementById("filters").addEventListener("click",e=>{
  const b=e.target.closest(".chip");if(!b)return;
@@ -119,36 +119,41 @@ posters.forEach((p,i)=>{
  s.querySelector("img").addEventListener("click",()=>openLB(src,p.t));
  track.appendChild(s);
  const d=document.createElement("button");d.className="c-dot"+(i===0?" active":"");d.setAttribute("aria-label","Poster "+(i+1));
- d.addEventListener("click",()=>{go(i);resetAuto();});dotsEl.appendChild(d);
+ d.addEventListener("click",()=>{go(i);resumeAuto();});dotsEl.appendChild(d);
 });
 document.getElementById("ctot").textContent=posters.length;
 function go(n){idx=(n+posters.length)%posters.length;
  track.style.transform=`translateX(${-idx*100}%)`;
  document.querySelectorAll(".c-dot").forEach((d,i)=>d.classList.toggle("active",i===idx));
  document.getElementById("ccur").textContent=idx+1;}
-document.getElementById("cprev").addEventListener("click",()=>{go(idx-1);resetAuto();});
-document.getElementById("cnext").addEventListener("click",()=>{go(idx+1);resetAuto();});
+document.getElementById("cprev").addEventListener("click",()=>{go(idx-1);resumeAuto();});
+document.getElementById("cnext").addEventListener("click",()=>{go(idx+1);resumeAuto();});
 let sx=null;const vp=document.querySelector(".c-viewport");
 vp.addEventListener("touchstart",e=>sx=e.touches[0].clientX,{passive:true});
-vp.addEventListener("touchend",e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){go(idx+(dx<0?1:-1));resetAuto();}sx=null;});
+vp.addEventListener("touchend",e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){go(idx+(dx<0?1:-1));resumeAuto();}sx=null;});
 addEventListener("keydown",e=>{
  if(lb.classList.contains("open")){if(e.key==="Escape")lb.classList.remove("open");return;}
- if(e.key==="ArrowLeft"){go(idx-1);resetAuto();}if(e.key==="ArrowRight"){go(idx+1);resetAuto();}
+ if(e.key==="ArrowLeft"){go(idx-1);resumeAuto();}if(e.key==="ArrowRight"){go(idx+1);resumeAuto();}
 });
 
-/* ---- auto-slide carousel (ganti tiap 5 detik) ---- */
-const AUTO_MS=5000;
+/* ---- auto-slide carousel (ganti tiap 6 detik; berhenti saat dibuka dari timeline) ---- */
+const AUTO_MS=6000;
 const reduceMotion=matchMedia("(prefers-reduced-motion: reduce)").matches;
-let auto;
-function startAuto(){if(reduceMotion)return;auto=setInterval(()=>{if(!lb.classList.contains("open"))go(idx+1)},AUTO_MS);}
-function resetAuto(){clearInterval(auto);startAuto();}
+let auto=null,paused=false;
+/* startAuto = mulai/reset timer, tapi tetap diam kalau sedang di-pause */
+function startAuto(){clearInterval(auto);if(reduceMotion||paused)return;
+ auto=setInterval(()=>{if(!lb.classList.contains("open"))go(idx+1)},AUTO_MS);}
+/* pauseAuto = jeda menetap (dipakai saat klik "Lihat Poster" dari timeline) */
+function pauseAuto(){paused=true;clearInterval(auto);}
+/* resumeAuto = lanjut auto-slide lagi (dipakai saat user menggeser carousel manual) */
+function resumeAuto(){paused=false;startAuto();}
 startAuto();
 const carousel=document.getElementById("carousel");
 carousel.addEventListener("mouseenter",()=>clearInterval(auto));
-carousel.addEventListener("mouseleave",resetAuto);
+carousel.addEventListener("mouseleave",startAuto);
 carousel.addEventListener("focusin",()=>clearInterval(auto));
-carousel.addEventListener("focusout",resetAuto);
-document.addEventListener("visibilitychange",()=>document.hidden?clearInterval(auto):resetAuto());
+carousel.addEventListener("focusout",startAuto);
+document.addEventListener("visibilitychange",()=>document.hidden?clearInterval(auto):startAuto());
 
 /* ---- countdown ---- */
 const target=new Date("2026-07-25T18:00:00+07:00").getTime();
@@ -169,3 +174,25 @@ burger.addEventListener("click",()=>burger.setAttribute("aria-expanded",links.cl
 links.addEventListener("click",e=>{if(e.target.tagName==="A"){links.classList.remove("open");burger.setAttribute("aria-expanded","false");}});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.1});
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+/* ---- musik latar (loop terus-menerus, volume 50%) ---- */
+const bgm=document.getElementById("bgm");
+if(bgm){
+ bgm.volume=0.5;
+ const tryPlay=()=>{const p=bgm.play();if(p&&p.catch)p.catch(()=>{});};
+ tryPlay();                                    // coba putar otomatis begitu web dibuka
+ /* Browser modern memblokir autoplay bersuara sampai ada interaksi user.
+    Kalau diblokir, mulai musik pada gesture pertama (klik/scroll/tap). */
+ const gestures=["pointerdown","keydown","touchstart"];
+ const startOnGesture=e=>{
+  if(e.target&&e.target.closest&&e.target.closest("#bgm-toggle"))return; // tombol musik urus sendiri
+  tryPlay();gestures.forEach(ev=>document.removeEventListener(ev,startOnGesture));
+ };
+ gestures.forEach(ev=>document.addEventListener(ev,startOnGesture,{passive:true}));
+ const bgmBtn=document.getElementById("bgm-toggle");
+ if(bgmBtn){
+  bgmBtn.addEventListener("click",()=>{bgm.paused?tryPlay():bgm.pause();});
+  bgm.addEventListener("play",()=>bgmBtn.classList.add("on"));
+  bgm.addEventListener("pause",()=>bgmBtn.classList.remove("on"));
+ }
+}

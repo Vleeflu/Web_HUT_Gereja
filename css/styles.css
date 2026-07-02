@@ -110,14 +110,14 @@
 
   /* VIDEO ROMO */
   .romo{position:relative;overflow:hidden;padding:64px 0;background:linear-gradient(180deg,#eef0e6 0%,#faf7ee 100%)}
-  .romo-inner{display:flex;align-items:center;gap:clamp(28px,5vw,64px)}
+  .romo-inner{display:flex;align-items:center;gap:clamp(18px,3vw,44px)}
   .romo-text{flex:1}
   .romo-kicker{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
-  .romo-title{font-family:"Fraunces",serif;color:var(--teal);font-size:clamp(1.9rem,4.6vw,3.1rem);line-height:1.06}
+  .romo-title{font-family:"Fraunces",serif;color:var(--teal);font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.06}
   .romo-em{color:var(--green);font-style:italic}
   .romo-desc{color:#3d5247;font-size:clamp(14px,1.6vw,17px);line-height:1.6;margin-top:16px;max-width:46ch}
   .romo-video{flex-shrink:0;line-height:0}
-  .romo-video video{width:clamp(220px,26vw,300px);max-width:100%;aspect-ratio:478/850;object-fit:cover;background:#000;
+  .romo-video video{width:clamp(260px,32vw,380px);max-width:100%;aspect-ratio:478/850;object-fit:cover;background:#000;
     border-radius:18px;border:2px solid rgba(201,162,59,.55);box-shadow:0 26px 56px rgba(22,60,58,.28)}
 
   /* SECTION */
@@ -231,6 +231,19 @@
   .lb img{max-width:96vw;max-height:92vh;border-radius:10px;box-shadow:0 20px 70px rgba(0,0,0,.6)}
   .lb .x{position:absolute;top:18px;right:24px;color:#fff;font-size:34px;line-height:1;cursor:pointer;font-weight:300}
 
+  /* MUSIK LATAR — tombol putar/jeda melayang */
+  .bgm-toggle{position:fixed;right:16px;bottom:16px;z-index:1500;width:46px;height:46px;border-radius:50%;
+    display:grid;place-items:center;cursor:pointer;border:1px solid rgba(201,162,59,.6);
+    background:var(--green-deep);color:var(--cream);box-shadow:0 8px 24px rgba(0,0,0,.28);transition:transform .2s,background .2s}
+  .bgm-toggle:hover{transform:translateY(-2px);background:var(--green)}
+  .bgm-toggle svg{width:22px;height:22px}
+  .bgm-toggle .ico-on{display:none}
+  .bgm-toggle.on .ico-on{display:block}
+  .bgm-toggle.on .ico-off{display:none}
+  .bgm-toggle.on{animation:bgmPulse 2.4s ease-in-out infinite}
+  @keyframes bgmPulse{0%,100%{box-shadow:0 8px 24px rgba(0,0,0,.28),0 0 0 0 rgba(201,162,59,.45)}
+    50%{box-shadow:0 8px 24px rgba(0,0,0,.28),0 0 0 8px rgba(201,162,59,0)}}
+
   /* FOOTER */
   footer{background:var(--green-deep);color:var(--cream);padding:60px 0 32px}
   .foot-grid{display:grid;grid-template-columns:2.6fr 1fr 1fr;gap:52px;margin-bottom:36px}
@@ -279,7 +292,8 @@
     .gs-desc{max-width:52ch;margin-left:auto;margin-right:auto}
     .romo-inner{flex-direction:column;text-align:center}
     .romo-desc{max-width:52ch;margin-left:auto;margin-right:auto}
-    .romo-video video{width:min(68vw,280px)}
+    .romo-video video{width:min(80vw,340px)}
+    .cd-poster img{width:min(80vw,340px)}
   }
   @media(max-width:480px){
     .brand .bt{font-size:14px}
