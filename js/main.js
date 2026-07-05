@@ -179,21 +179,21 @@ let page=0;
 const books=()=>Array.from(shelvesEl.children);
 const totalPages=()=>Math.max(1,Math.ceil(posters.length/PER_PAGE));
 function applyMobile(){
+ const tp=totalPages();
+ page=((page%tp)+tp)%tp;              /* memutar: rak terakhir → rak 1, dan sebaliknya */
  const start=page*PER_PAGE,end=start+PER_PAGE;
  books().forEach((el,i)=>el.classList.toggle("is-hidden",i<start||i>=end));
- bcCur.textContent=page+1;bcTot.textContent=totalPages();
- bcPrev.disabled=page===0;bcNext.disabled=page>=totalPages()-1;
+ bcCur.textContent=page+1;bcTot.textContent=tp;
 }
 function layoutShelves(){
  if(mqMobile.matches){
-  page=Math.min(Math.max(page,0),totalPages()-1);
   pager.hidden=false;applyMobile();
  }else{
   pager.hidden=true;books().forEach(el=>el.classList.remove("is-hidden"));
  }
 }
-bcPrev.addEventListener("click",()=>{if(page>0){page--;applyMobile();}});
-bcNext.addEventListener("click",()=>{if(page<totalPages()-1){page++;applyMobile();}});
+bcPrev.addEventListener("click",()=>{page--;applyMobile();});
+bcNext.addEventListener("click",()=>{page++;applyMobile();});
 if(mqMobile.addEventListener)mqMobile.addEventListener("change",layoutShelves);
 else mqMobile.addListener(layoutShelves);
 layoutShelves();
@@ -218,24 +218,88 @@ links.addEventListener("click",e=>{if(e.target.tagName==="A"){links.classList.re
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.1});
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 
-/* ---- musik latar (loop terus-menerus, volume 50%) ---- */
+/* ---- musik latar + pemutar (loop, volume awal 50%) ---- */
 const bgm=document.getElementById("bgm");
 if(bgm){
+ const reduceMotion=matchMedia("(prefers-reduced-motion: reduce)").matches;
  bgm.volume=0.5;
- const tryPlay=()=>{const p=bgm.play();if(p&&p.catch)p.catch(()=>{});};
- tryPlay();                                    // coba putar otomatis begitu web dibuka
- /* Browser modern memblokir autoplay bersuara sampai ada interaksi user.
-    Kalau diblokir, mulai musik pada gesture pertama (klik/scroll/tap). */
+
+ /* --- visualizer bar (Web Audio, opsional — tidak pernah menghalangi pemutaran) --- */
+ const player=document.getElementById("gsPlayer");
+ const viz=document.getElementById("gspViz");
+ const NBARS=16,bars=[];
+ if(viz){for(let i=0;i<NBARS;i++){const b=document.createElement("i");b.style.animationDelay=(i*0.06)+"s";viz.appendChild(b);bars.push(b);}}
+ let actx,analyser,gain,freq,rafId,audioReady=false;
+ /* volume: lewat GainNode bila Web Audio aktif (andal di semua browser), jika tidak lewat element */
+ function setVolume(v){if(gain){gain.gain.value=v;bgm.volume=1;}else bgm.volume=v;}
+ /* Bangun graph Web Audio HANYA setelah context "running", supaya rerouting audio
+    tidak pernah membuat lagu senyap. Kalau Web Audio gagal/tidak jalan, lagu tetap
+    diputar lewat elemen seperti biasa (bar pakai animasi CSS sebagai cadangan). */
+ function initAudio(){
+  if(audioReady||!bars.length)return;
+  const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+  if(!actx){try{actx=new AC();}catch(e){return;}}
+  const build=()=>{
+   if(audioReady||actx.state!=="running")return;
+   try{
+    const src=actx.createMediaElementSource(bgm);
+    analyser=actx.createAnalyser();analyser.fftSize=128;analyser.smoothingTimeConstant=.8;
+    freq=new Uint8Array(analyser.frequencyBinCount);
+    gain=actx.createGain();
+    src.connect(gain);gain.connect(analyser);analyser.connect(actx.destination);
+    setVolume(gspVol?gspVol.value/100:1);
+    audioReady=true;
+    if(isOn()){stopViz();startViz();}
+   }catch(e){audioReady=false;}
+  };
+  if(actx.state==="suspended")actx.resume().then(build).catch(()=>{});
+  else build();
+ }
+ function draw(){
+  if(analyser){analyser.getByteFrequencyData(freq);
+   for(let i=0;i<NBARS;i++){const v=freq[i+2]/255;bars[i].style.transform="scaleY("+(0.12+v*0.95)+")";}}
+  rafId=requestAnimationFrame(draw);
+ }
+ function startViz(){if(!player||reduceMotion)return;cancelAnimationFrame(rafId);if(audioReady){player.classList.remove("anim");draw();}else player.classList.add("anim");}
+ function stopViz(){cancelAnimationFrame(rafId);if(player)player.classList.remove("anim");bars.forEach(b=>b.style.transform="");}
+
+ /* --- status: dianggap "menyala" hanya bila benar-benar bersuara (main & tidak bisu) --- */
+ const gspBtn=document.getElementById("gspBtn"),gspVol=document.getElementById("gspVol"),bgmBtn=document.getElementById("bgm-toggle");
+ const isOn=()=>!bgm.paused&&!bgm.muted;
+ let vizOn=false;
+ function reflect(){
+  const on=isOn();
+  if(player)player.classList.toggle("playing",on);
+  if(bgmBtn)bgmBtn.classList.toggle("on",on);
+  if(on&&!vizOn){vizOn=true;startViz();}else if(!on&&vizOn){vizOn=false;stopViz();}
+ }
+ bgm.addEventListener("play",reflect);
+ bgm.addEventListener("pause",reflect);
+ bgm.addEventListener("volumechange",reflect);
+
+ /* --- volume slider --- */
+ function updateVolUI(){const pct=+gspVol.value;
+  gspVol.style.background="linear-gradient(90deg,#c9a23b "+pct+"%,#e6ddc7 "+pct+"%)";
+  if(player)player.classList.toggle("muted",pct===0);}
+ if(gspVol){gspVol.value=Math.round(bgm.volume*100);updateVolUI();
+  gspVol.addEventListener("input",()=>{setVolume(gspVol.value/100);updateVolUI();});}
+
+ /* --- putar dengan suara (pemutaran dulu, Web Audio menyusul supaya tak menghalangi) --- */
+ function playAudible(){bgm.muted=false;const p=bgm.play();if(p&&p.catch)p.catch(()=>{});initAudio();}
+ function toggle(){isOn()?bgm.pause():playAudible();}
+ if(gspBtn)gspBtn.addEventListener("click",toggle);
+ if(bgmBtn)bgmBtn.addEventListener("click",toggle);
+
+ /* --- lagu langsung jalan tiap web dibuka ---
+    Browser memblokir autoplay bersuara sampai ada interaksi. Solusi: coba langsung
+    bersuara; kalau diblokir, putar dulu tanpa suara (diizinkan) lalu nyalakan suara
+    pada interaksi pertama (klik/tap/tombol apa pun). */
+ const first=bgm.play();
+ if(first&&first.then)first.then(reflect).catch(()=>{bgm.muted=true;const q=bgm.play();if(q&&q.catch)q.catch(()=>{});});
  const gestures=["pointerdown","keydown","touchstart"];
  const startOnGesture=e=>{
-  if(e.target&&e.target.closest&&e.target.closest("#bgm-toggle"))return; // tombol musik urus sendiri
-  tryPlay();gestures.forEach(ev=>document.removeEventListener(ev,startOnGesture));
+  if(e.target&&e.target.closest&&e.target.closest("#bgm-toggle,#gsPlayer"))return;
+  playAudible();gestures.forEach(ev=>document.removeEventListener(ev,startOnGesture));
  };
  gestures.forEach(ev=>document.addEventListener(ev,startOnGesture,{passive:true}));
- const bgmBtn=document.getElementById("bgm-toggle");
- if(bgmBtn){
-  bgmBtn.addEventListener("click",()=>{bgm.paused?tryPlay():bgm.pause();});
-  bgm.addEventListener("play",()=>bgmBtn.classList.add("on"));
-  bgm.addEventListener("pause",()=>bgmBtn.classList.remove("on"));
- }
 }

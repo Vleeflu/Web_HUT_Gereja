@@ -96,7 +96,7 @@
         <div class="cd-box"><b id="cd-m">–</b><small>Menit</small></div>
         <div class="cd-box"><b id="cd-s">–</b><small>Detik</small></div>
       </div>
-      <p class="cd-ended">Puji Tuhan — perayaan telah berlangsung. Terima kasih atas kebersamaannya! 🙏</p>
+      <p class="cd-ended">Puji Tuhan — perayaan telah berlangsung. Terima kasih atas kebersamaannya!</p>
     </div>
     <div class="cd-poster">
       <img src="images/content/%5Bpanitia%5Dmalam%20puncak.jpeg" alt="Poster Malam Puncak HUT ke-56" loading="lazy" />
@@ -114,6 +114,23 @@
       <span class="gs-kicker">✦ Bintang Tamu Malam Puncak</span>
       <h2 class="gs-title">Guest Star<br><span class="gs-name">Filosofi Teduh</span></h2>
       <p class="gs-meta">25 Juli 2026 · Panggung Utama, Parkiran GKP</p>
+      <div class="gs-player" id="gsPlayer">
+        <button class="gsp-btn" id="gspBtn" type="button" aria-label="Putar atau jeda lagu">
+          <svg class="ico-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="ico-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+        </button>
+        <div class="gsp-info">
+          <span class="gsp-eyebrow">♪ Sedang Diputar</span>
+          <span class="gsp-title" title="Setinggi Tingginya Langit Mix (Cover)">Setinggi Tingginya Langit Mix (Cover)</span>
+          <span class="gsp-artist">Filosofi Teduh</span>
+        </div>
+        <div class="gsp-viz" id="gspViz" aria-hidden="true"></div>
+        <label class="gsp-vol">
+          <svg class="ico-vol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+          <svg class="ico-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>
+          <input type="range" id="gspVol" min="0" max="100" value="50" aria-label="Volume musik" />
+        </label>
+      </div>
       <p class="gs-desc">Tutup rangkaian HUT ke-56 dengan penampilan spesial di Malam Puncak. Mari rayakan kebersamaan lewat alunan musik yang menghangatkan bersama seluruh umat.</p>
       <button class="gs-cta" type="button" data-lb="images/content/Filosofi Teduh.jpeg" data-lb-alt="Guest Star — Filosofi Teduh">Lihat Poster &rarr;</button>
     </div>
