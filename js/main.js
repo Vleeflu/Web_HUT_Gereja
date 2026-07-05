@@ -86,9 +86,7 @@ acara.forEach((a,i)=>{
 });
 tl.addEventListener("click",e=>{
  const b=e.target.closest("button.tl-cta");if(!b)return;
- const pi=+b.dataset.pi;
- document.getElementById("lomba").scrollIntoView({behavior:"smooth"});
- go(pi);pauseAuto();
+ openBook(+b.dataset.pi);
 });
 document.getElementById("filters").addEventListener("click",e=>{
  const b=e.target.closest(".chip");if(!b)return;
@@ -108,52 +106,97 @@ lb.addEventListener("click",()=>lb.classList.remove("open"));
 document.getElementById("lbx").addEventListener("click",()=>lb.classList.remove("open"));
 document.querySelectorAll("[data-lb]").forEach(el=>el.addEventListener("click",()=>openLB(encodeURI(el.dataset.lb),el.dataset.lbAlt||"")));
 
-const track=document.getElementById("ctrack"),dotsEl=document.getElementById("cdots");
-let idx=0;
-posters.forEach((p,i)=>{
- const s=document.createElement("div");s.className="c-slide";
- const src=encodeURI(p.img);
- const cta=p.form?`<a class="c-cta" href="${p.form}" target="_blank" rel="noopener">Daftar Sekarang &rarr;</a>`
-        :p.note?`<span class="c-note">${p.note}</span>`:"";
- s.innerHTML=`<img src="${src}" alt="Poster ${p.t}" loading="lazy"/><div class="cap"><b>${p.t}</b><small>${p.s}</small>${cta}</div>`;
- s.querySelector("img").addEventListener("click",()=>openLB(src,p.t));
- track.appendChild(s);
- const d=document.createElement("button");d.className="c-dot"+(i===0?" active":"");d.setAttribute("aria-label","Poster "+(i+1));
- d.addEventListener("click",()=>{go(i);resumeAuto();});dotsEl.appendChild(d);
+/* ---- RAK POSTER (bookcase) ---- */
+const shelvesEl=document.getElementById("bcShelves");
+const catLabel={lomba:"Lomba",sosial:"Sosial",rohani:"Rohani",olahraga:"Olahraga",puncak:"Puncak"};
+/* kategori + tanggal + lokasi tiap poster diturunkan dari data acara (lewat key/pk) */
+const catByKey={},acaraByKey={};
+acara.forEach(a=>{
+ const keys=(a.btns?a.btns.map(b=>b.pk):[a.pk]).filter(Boolean);
+ keys.forEach(k=>{if(!(k in catByKey)){catByKey[k]=a.c;acaraByKey[k]=a;}});
 });
-document.getElementById("ctot").textContent=posters.length;
-function go(n){idx=(n+posters.length)%posters.length;
- track.style.transform=`translateX(${-idx*100}%)`;
- document.querySelectorAll(".c-dot").forEach((d,i)=>d.classList.toggle("active",i===idx));
- document.getElementById("ccur").textContent=idx+1;}
-document.getElementById("cprev").addEventListener("click",()=>{go(idx-1);resumeAuto();});
-document.getElementById("cnext").addEventListener("click",()=>{go(idx+1);resumeAuto();});
-let sx=null;const vp=document.querySelector(".c-viewport");
-vp.addEventListener("touchstart",e=>sx=e.touches[0].clientX,{passive:true});
-vp.addEventListener("touchend",e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){go(idx+(dx<0?1:-1));resumeAuto();}sx=null;});
-addEventListener("keydown",e=>{
- if(lb.classList.contains("open")){if(e.key==="Escape")lb.classList.remove("open");return;}
- if(e.key==="ArrowLeft"){go(idx-1);resumeAuto();}if(e.key==="ArrowRight"){go(idx+1);resumeAuto();}
+posters.forEach((p,i)=>{
+ const src=encodeURI(p.img);
+ const b=document.createElement("button");
+ b.type="button";b.className="book";b.dataset.pi=i;
+ b.setAttribute("aria-label","Buka detail "+p.t);
+ b.innerHTML=`<span class="book-cover">${p.form?'<span class="book-badge">Daftar</span>':""}<img src="${src}" alt="Poster ${p.t}" loading="lazy"/></span><span class="book-label">${p.t}</span>`;
+ b.addEventListener("click",()=>openBook(i));
+ shelvesEl.appendChild(b);
 });
 
-/* ---- auto-slide carousel (ganti tiap 6 detik; berhenti saat dibuka dari timeline) ---- */
-const AUTO_MS=6000;
-const reduceMotion=matchMedia("(prefers-reduced-motion: reduce)").matches;
-let auto=null,paused=false;
-/* startAuto = mulai/reset timer, tapi tetap diam kalau sedang di-pause */
-function startAuto(){clearInterval(auto);if(reduceMotion||paused)return;
- auto=setInterval(()=>{if(!lb.classList.contains("open"))go(idx+1)},AUTO_MS);}
-/* pauseAuto = jeda menetap (dipakai saat klik "Lihat Poster" dari timeline) */
-function pauseAuto(){paused=true;clearInterval(auto);}
-/* resumeAuto = lanjut auto-slide lagi (dipakai saat user menggeser carousel manual) */
-function resumeAuto(){paused=false;startAuto();}
-startAuto();
-const carousel=document.getElementById("carousel");
-carousel.addEventListener("mouseenter",()=>clearInterval(auto));
-carousel.addEventListener("mouseleave",startAuto);
-carousel.addEventListener("focusin",()=>clearInterval(auto));
-carousel.addEventListener("focusout",startAuto);
-document.addEventListener("visibilitychange",()=>document.hidden?clearInterval(auto):startAuto());
+/* ---- detail poster (buka buku dari rak) ---- */
+const pm=document.getElementById("pmodal");
+const pmImg=document.getElementById("pmImg"),pmTitle=document.getElementById("pmTitle"),
+      pmSub=document.getElementById("pmSub"),pmCat=document.getElementById("pmCat"),
+      pmMeta=document.getElementById("pmMeta"),pmAction=document.getElementById("pmAction"),
+      pmCur=document.getElementById("pmCur"),pmTot=document.getElementById("pmTot");
+let pmSrc="",pmIdx=0;
+pmTot.textContent=posters.length;
+const metaItem=(ico,txt)=>`<span class="pm-meta-item"><span class="pm-meta-ico">${ico}</span>${txt}</span>`;
+function openBook(i){
+ pmIdx=(i+posters.length)%posters.length;
+ const p=posters[pmIdx];if(!p)return;
+ pmSrc=encodeURI(p.img);
+ pmImg.src=pmSrc;pmImg.alt="Poster "+p.t;
+ pmTitle.textContent=p.t;
+ pmSub.textContent=p.s||"";
+ const cat=catByKey[p.key],a=acaraByKey[p.key];
+ if(cat){pmCat.textContent=catLabel[cat]||cat;pmCat.className="pm-cat cat-"+cat;pmCat.hidden=false;}
+ else pmCat.hidden=true;
+ const m=[];
+ if(a&&a.d)m.push(metaItem("🗓️",a.d));
+ if(a&&a.l)m.push(metaItem("📍",a.l));
+ pmMeta.innerHTML=m.join("");
+ pmAction.innerHTML=p.form
+  ?`<a class="pm-cta" href="${p.form}" target="_blank" rel="noopener">Daftar Sekarang &rarr;</a>`
+  :p.note?`<span class="pm-note">${p.note}</span>`:"";
+ pmCur.textContent=pmIdx+1;
+ pm.classList.add("open");pm.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";
+}
+function closeBook(){pm.classList.remove("open");pm.setAttribute("aria-hidden","true");document.body.style.overflow="";}
+document.getElementById("pmX").addEventListener("click",closeBook);
+document.getElementById("pmBackdrop").addEventListener("click",closeBook);
+document.getElementById("pmPrev").addEventListener("click",()=>openBook(pmIdx-1));
+document.getElementById("pmNext").addEventListener("click",()=>openBook(pmIdx+1));
+const zoomPoster=()=>openLB(pmSrc,pmTitle.textContent);
+document.getElementById("pmZoom").addEventListener("click",zoomPoster);
+pmImg.addEventListener("click",zoomPoster);
+addEventListener("keydown",e=>{
+ if(lb.classList.contains("open")){if(e.key==="Escape")lb.classList.remove("open");return;}
+ if(!pm.classList.contains("open"))return;
+ if(e.key==="Escape")closeBook();
+ else if(e.key==="ArrowLeft")openBook(pmIdx-1);
+ else if(e.key==="ArrowRight")openBook(pmIdx+1);
+});
+
+/* ---- HP: rak kecil 2x2 dengan tombol geser (multi-level) ---- */
+const pager=document.getElementById("bcPager"),
+      bcPrev=document.getElementById("bcPrev"),bcNext=document.getElementById("bcNext"),
+      bcCur=document.getElementById("bcCur"),bcTot=document.getElementById("bcTot");
+const PER_PAGE=4,mqMobile=matchMedia("(max-width:640px)");
+let page=0;
+const books=()=>Array.from(shelvesEl.children);
+const totalPages=()=>Math.max(1,Math.ceil(posters.length/PER_PAGE));
+function applyMobile(){
+ const start=page*PER_PAGE,end=start+PER_PAGE;
+ books().forEach((el,i)=>el.classList.toggle("is-hidden",i<start||i>=end));
+ bcCur.textContent=page+1;bcTot.textContent=totalPages();
+ bcPrev.disabled=page===0;bcNext.disabled=page>=totalPages()-1;
+}
+function layoutShelves(){
+ if(mqMobile.matches){
+  page=Math.min(Math.max(page,0),totalPages()-1);
+  pager.hidden=false;applyMobile();
+ }else{
+  pager.hidden=true;books().forEach(el=>el.classList.remove("is-hidden"));
+ }
+}
+bcPrev.addEventListener("click",()=>{if(page>0){page--;applyMobile();}});
+bcNext.addEventListener("click",()=>{if(page<totalPages()-1){page++;applyMobile();}});
+if(mqMobile.addEventListener)mqMobile.addEventListener("change",layoutShelves);
+else mqMobile.addListener(layoutShelves);
+layoutShelves();
 
 /* ---- countdown ---- */
 const target=new Date("2026-07-25T18:00:00+07:00").getTime();

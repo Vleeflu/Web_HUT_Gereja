@@ -158,20 +158,42 @@
 <section id="lomba">
   <div class="wrap">
     <div class="lhead-band reveal">
+      <span class="lhead-kicker">Pustaka Poster</span>
       <h2>Poster Kegiatan</h2>
-      <p>Poster resmi tiap acara — ketuk untuk memperbesar. Tombol pendaftaran ada di bawah poster yang sudah dibuka formnya.</p>
+      <p>Ambil sebuah poster, klik untuk membuka detail acara, memperbesar poster, dan mendaftar.</p>
     </div>
-    <div class="carousel reveal" id="carousel">
-      <button class="c-arrow prev" id="cprev" aria-label="Poster sebelumnya">&#8249;</button>
-      <button class="c-arrow next" id="cnext" aria-label="Poster berikutnya">&#8250;</button>
-      <div class="c-viewport"><div class="c-track" id="ctrack"></div></div>
-      <div class="c-foot">
-        <div class="c-dots" id="cdots"></div>
-        <div class="c-count"><span id="ccur">1</span> / <span id="ctot">8</span></div>
-      </div>
+    <div class="bookcase reveal" id="bookcase">
+      <div class="bc-shelves" id="bcShelves"></div>
+    </div>
+    <div class="bc-pager reveal" id="bcPager" hidden>
+      <button class="bc-nav" id="bcPrev" type="button" aria-label="Rak sebelumnya">&#8249;</button>
+      <span class="bc-count">Rak <b id="bcCur">1</b> / <span id="bcTot">1</span></span>
+      <button class="bc-nav" id="bcNext" type="button" aria-label="Rak berikutnya">&#8250;</button>
     </div>
   </div>
 </section>
+
+<!-- POSTER DETAIL (buka buku dari rak) -->
+<div class="pmodal" id="pmodal" aria-hidden="true">
+  <div class="pm-backdrop" id="pmBackdrop"></div>
+  <button class="pm-x" id="pmX" type="button" aria-label="Tutup detail">&times;</button>
+  <button class="pm-nav prev" id="pmPrev" type="button" aria-label="Poster sebelumnya">&#8249;</button>
+  <button class="pm-nav next" id="pmNext" type="button" aria-label="Poster berikutnya">&#8250;</button>
+  <div class="pm-stage" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+    <div class="pm-figure">
+      <img id="pmImg" src="" alt="" />
+      <span class="pm-zoom-hint" id="pmZoom">&#10530; Ketuk untuk perbesar</span>
+    </div>
+    <div class="pm-card">
+      <span class="pm-cat" id="pmCat" hidden></span>
+      <h3 class="pm-title" id="pmTitle"></h3>
+      <p class="pm-sub" id="pmSub"></p>
+      <div class="pm-meta" id="pmMeta"></div>
+      <div class="pm-action" id="pmAction"></div>
+      <div class="pm-count"><span id="pmCur">1</span> / <span id="pmTot">20</span></div>
+    </div>
+  </div>
+</div>
 
 <!-- LIGHTBOX -->
 <div class="lb" id="lb"><span class="x" id="lbx">&times;</span><img id="lbimg" src="" alt="" /></div>
