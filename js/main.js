@@ -61,12 +61,16 @@ const posters=[
  {key:"malam-puncak",img:"images/content/[panitia]malam puncak.jpeg",t:"Malam Puncak",s:"Puncak Perayaan"},
  {key:"donor",img:"images/content/[PSE] Donor Darah.jpeg",t:"Donor Darah",s:"Umum"},
 ];
-const pin='📌';
+/* warna aksen per acara (dipakai untuk bar kartu, cincin node, ikon) */
+const kc={peach:"#c6764a",mint:"#2f8a63",blue:"#3f7fb0",lemon:"#b89a2e",lilac:"#7a63a8",rose:"#c25555"};
+const icoCal='<svg class="tl-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg>';
+const icoPin='<svg class="tl-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.3-6-10a6 6 0 1 1 12 0c0 4.7-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>';
 const tl=document.getElementById("tl");
 acara.forEach((a,i)=>{
  const side=i%2===0?"left":"right";
  const el=document.createElement("div");
  el.className=`tl-item ${side}`;el.dataset.cat=a.c;
+ el.style.setProperty("--kc",kc[a.k]||"#7a7a3a");
  const mkBtn=b=>{
    if(b.href)return `<a class="tl-cta" href="${b.href}" target="_blank" rel="noopener">${b.t} &rarr;</a>`;
    const j=posters.findIndex(p=>p.key===b.pk);
@@ -77,13 +81,14 @@ acara.forEach((a,i)=>{
  el.innerHTML=`
    <div class="tl-node n-${a.k}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${I[a.ic]}</svg></div>
    <div class="tl-card">
-     <span class="tl-pill p-${a.k}">${a.d}</span>
+     <span class="tl-pill p-${a.k}">${icoCal}<span>${a.d}</span></span>
      <h3>${a.t}</h3>
-     <div class="tl-loc"><span class="e">${pin}</span><span>${a.l}</span></div>
+     <div class="tl-loc">${icoPin}<span>${a.l}</span></div>
      ${posterBtn}
    </div>`;
  tl.appendChild(el);
 });
+tl.insertAdjacentHTML("beforeend",'<span class="tl-end" aria-hidden="true"></span>');
 tl.addEventListener("click",e=>{
  const b=e.target.closest("button.tl-cta");if(!b)return;
  openBook(+b.dataset.pi);
