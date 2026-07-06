@@ -290,7 +290,7 @@ if(bgm){
   gspVol.addEventListener("input",()=>{setVolume(gspVol.value/100);updateVolUI();});}
 
  /* --- putar dengan suara (pemutaran dulu, Web Audio menyusul supaya tak menghalangi) --- */
- function playAudible(){bgm.muted=false;const p=bgm.play();if(p&&p.catch)p.catch(()=>{});initAudio();}
+ function playAudible(){bgm.muted=false;const p=bgm.play();if(p&&p.catch)p.catch(()=>{});initAudio();document.dispatchEvent(new Event("bgm:soundon"));return p;}
  function toggle(){isOn()?bgm.pause():playAudible();}
  if(gspBtn)gspBtn.addEventListener("click",toggle);
  if(bgmBtn)bgmBtn.addEventListener("click",toggle);
@@ -301,10 +301,16 @@ if(bgm){
     pada interaksi pertama (klik/tap/tombol apa pun). */
  const first=bgm.play();
  if(first&&first.then)first.then(reflect).catch(()=>{bgm.muted=true;const q=bgm.play();if(q&&q.catch)q.catch(()=>{});});
- const gestures=["pointerdown","keydown","touchstart"];
+ /* Gestur pertama di mana pun menyalakan lagu: sentuh, geser/swipe, klik, atau tekan
+    tombol keyboard. Swipe pun ikut memicu lewat touchstart/pointerdown (play() di dalam
+    handler touchstart diizinkan iOS walau jari lanjut menggulir). Listener hanya dilepas
+    kalau lagu benar-benar berhasil main, supaya gestur berikutnya tetap bisa menyalakan. */
+ const gestures=["pointerdown","touchstart","touchend","click","keydown"];
  const startOnGesture=e=>{
   if(e.target&&e.target.closest&&e.target.closest("#bgm-toggle,#gsPlayer"))return;
-  playAudible();gestures.forEach(ev=>document.removeEventListener(ev,startOnGesture));
+  const p=playAudible();
+  const off=()=>gestures.forEach(ev=>document.removeEventListener(ev,startOnGesture));
+  if(p&&p.then)p.then(off).catch(()=>{});else off();
  };
  gestures.forEach(ev=>document.addEventListener(ev,startOnGesture,{passive:true}));
 
@@ -334,10 +340,22 @@ if(bgm){
   /* video dijeda, selesai, atau di-skip -> musik balik dengan fade-in */
   romoVid.addEventListener("pause",resumeMusic);
   romoVid.addEventListener("ended",resumeMusic);
-  /* auto-play saat terlihat; jeda video saat tergulir keluar (di-skip) supaya musik balik.
-     Auto-play bersuara butuh gestur sebelumnya; bila diblokir, video tetap bisa diputar manual. */
+  /* auto-play saat terlihat; jeda video saat tergulir keluar (di-skip) supaya musik balik. */
+  let inView=false;
+  const rg=["pointerdown","touchstart","keydown"];
+  /* bila autoplay bersuara diblokir (belum ada interaksi), coba lagi pada gestur
+     berikutnya di mana pun — asal video masih di layar (tetap bersuara, tak pernah muted) */
+  function retryOnGesture(){
+   rg.forEach(ev=>document.removeEventListener(ev,retryOnGesture));
+   if(inView){const p=romoVid.play();if(p&&p.catch)p.catch(()=>{});}
+  }
+  function tryPlay(){
+   const p=romoVid.play();
+   if(p&&p.catch)p.catch(()=>rg.forEach(ev=>document.addEventListener(ev,retryOnGesture,{passive:true})));
+  }
   const vio=new IntersectionObserver(es=>es.forEach(e=>{
-   if(e.isIntersecting){const pr=romoVid.play();if(pr&&pr.catch)pr.catch(()=>{});}
+   inView=e.isIntersecting;
+   if(inView)tryPlay();
    else if(!romoVid.paused)romoVid.pause();
   }),{threshold:.5});
   vio.observe(romoVid);
