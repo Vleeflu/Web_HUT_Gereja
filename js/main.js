@@ -1,3 +1,26 @@
+/* ---- INTRO: ketuk untuk masuk ----
+   Ketukan pertama ini adalah gestur sah yang membuka izin audio browser, sehingga
+   musik & video Romo bisa langsung bersuara. Overlay dikunci sampai ditekan; kalau
+   JavaScript mati, overlay disembunyikan lewat <noscript> supaya web tetap terbuka. */
+(function(){
+ const intro=document.getElementById("intro");
+ if(!intro)return;
+ const root=document.documentElement;
+ root.style.overflow="hidden";document.body.style.overflow="hidden";
+ let entered=false;
+ function enter(){
+  if(entered)return;entered=true;
+  document.dispatchEvent(new Event("intro:enter"));   /* -> menyalakan lagu di blok bgm */
+  root.style.overflow="";document.body.style.overflow="";
+  intro.classList.add("leaving");
+  setTimeout(()=>intro.classList.add("gone"),650);
+ }
+ intro.addEventListener("click",enter);
+ addEventListener("keydown",e=>{if(!entered&&(e.key==="Enter"||e.key===" "||e.key==="Escape")){e.preventDefault();enter();}});
+ const btn=document.getElementById("introBtn");
+ if(btn){try{btn.focus({preventScroll:true});}catch(_){btn.focus();}}
+})();
+
 /* ---- ICONS ---- */
 const I={
  decor:'<path d="M12 2l2.5 5L20 8l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-1z"/>',
@@ -294,6 +317,9 @@ if(bgm){
  function toggle(){isOn()?bgm.pause():playAudible();}
  if(gspBtn)gspBtn.addEventListener("click",toggle);
  if(bgmBtn)bgmBtn.addEventListener("click",toggle);
+
+ /* ketukan "Masuk" dari intro adalah gestur sah -> langsung nyalakan lagu bersuara */
+ document.addEventListener("intro:enter",()=>{playAudible();},{once:true});
 
  /* --- lagu langsung jalan tiap web dibuka ---
     Browser memblokir autoplay bersuara sampai ada interaksi. Solusi: coba langsung
