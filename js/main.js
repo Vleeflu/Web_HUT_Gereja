@@ -307,4 +307,39 @@ if(bgm){
   playAudible();gestures.forEach(ev=>document.removeEventListener(ev,startOnGesture));
  };
  gestures.forEach(ev=>document.addEventListener(ev,startOnGesture,{passive:true}));
+
+ /* ---- video sambutan Romo: putar otomatis saat tergulir ke tampilan,
+    jeda musik selama video main, lalu munculkan lagi musik dengan fade-in
+    begitu video selesai ---- */
+ const romoVid=document.querySelector("#sapaan-romo video");
+ if(romoVid){
+  let musicWasOn=false,fadeIv=null;
+  /* naikkan musik dari senyap ke volume slider saat ini secara halus */
+  function fadeInMusic(){
+   if(fadeIv){clearInterval(fadeIv);fadeIv=null;}
+   const target=gspVol?(+gspVol.value/100):0.5;
+   setVolume(0);bgm.muted=false;
+   const p=bgm.play();if(p&&p.catch)p.catch(()=>{});
+   const steps=30,dur=1400;let i=0;
+   fadeIv=setInterval(()=>{i++;setVolume(target*i/steps);
+    if(i>=steps){clearInterval(fadeIv);fadeIv=null;setVolume(target);}},dur/steps);
+  }
+  /* kembalikan musik dengan fade-in, hanya bila tadi memang sempat dijeda video */
+  function resumeMusic(){if(musicWasOn){musicWasOn=false;fadeInMusic();}}
+  /* video mulai (otomatis maupun ditekan manual) -> jeda musik bila sedang menyala */
+  romoVid.addEventListener("play",()=>{
+   if(fadeIv){clearInterval(fadeIv);fadeIv=null;}
+   if(isOn()){musicWasOn=true;bgm.pause();}
+  });
+  /* video dijeda, selesai, atau di-skip -> musik balik dengan fade-in */
+  romoVid.addEventListener("pause",resumeMusic);
+  romoVid.addEventListener("ended",resumeMusic);
+  /* auto-play saat terlihat; jeda video saat tergulir keluar (di-skip) supaya musik balik.
+     Auto-play bersuara butuh gestur sebelumnya; bila diblokir, video tetap bisa diputar manual. */
+  const vio=new IntersectionObserver(es=>es.forEach(e=>{
+   if(e.isIntersecting){const pr=romoVid.play();if(pr&&pr.catch)pr.catch(()=>{});}
+   else if(!romoVid.paused)romoVid.pause();
+  }),{threshold:.5});
+  vio.observe(romoVid);
+ }
 }
